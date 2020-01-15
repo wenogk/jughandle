@@ -7,11 +7,14 @@ function Navbar() {
         <ul className="right hide-on-med-and-down">
           <li><a href="/">Home</a></li>
           <li><a href="/About">About</a></li>
+          <li><a href="/Create">Create</a></li>
+
         </ul>
 
         <ul id="nav-mobile" className="sidenav">
           <li><a href="/">Home</a></li>
           <li><a href="/About">About</a></li>
+          <li><a href="/Create">Create</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>

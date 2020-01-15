@@ -1,21 +1,13 @@
 import React from 'react'
-
+import Navbar from '../Navbar'
+import Footer from '../Footer'
 function CreateStory() {
   return (
-    <nav className="purple darken-2" role="navigation">
-      <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Storify</a>
-        <ul className="right hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
-          <li><a href="/About">About</a></li>
-        </ul>
-
-        <ul id="nav-mobile" className="sidenav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/About">About</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-      </div>
-    </nav>
+  <React.Fragment>
+  <Navbar />
+  <h1>Create page</h1>
+  <Footer />
+  </React.Fragment>
   );
 }
 

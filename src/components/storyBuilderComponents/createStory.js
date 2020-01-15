@@ -38,12 +38,11 @@ function CreateStory() {
         </div>
 
 
-  <ul>
-    <li><a className="btn-floating red"><i className="material-icons">insert_chart</i></a></li>
-    <li><a className="btn-floating yellow darken-1"><i className="material-icons">format_quote</i></a></li>
-    <li><a className="btn-floating green"><i className="material-icons">publish</i></a></li>
-    <li><a className="btn-floating blue"><i className="material-icons">attach_file</i></a></li>
-  </ul>
+  <ul className="list-inline">
+    <li><a className="btn-floating red"><i className="material-icons">queue</i></a></li>
+    <li><a className="btn-floating yellow darken-1"><i className="material-icons">video_call</i></a></li>
+    <li><a className="btn-floating green"><i className="material-icons">collections</i></a></li>
+    </ul>
 
       </form>
     </div>

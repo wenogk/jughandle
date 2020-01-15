@@ -1,9 +1,13 @@
 import React from 'react';
-
+import Navbar from './Navbar'
+import Footer from './Footer'
 function About() {
   return (
     <React.Fragment>
-    <h1>THIS IS THE ABOUT</h1>
+    <Navbar />
+    <p> This is the about page. </p>
+    <br /><br />
+    <Footer />
     </React.Fragment>
   );
 }

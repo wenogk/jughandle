@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Navbar() {
+function CreateStory() {
   return (
     <nav className="purple darken-2" role="navigation">
       <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Storify</a>
@@ -19,4 +19,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default CreateStory;

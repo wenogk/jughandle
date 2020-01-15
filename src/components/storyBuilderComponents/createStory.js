@@ -33,6 +33,8 @@ function CreateStory() {
   </div>
 
 </div>
+{/*start simple mode */}
+
 <div id="simpleMode" className="col s12">
   <div className="container">
   <h1>Create Story</h1>
@@ -46,6 +48,9 @@ function CreateStory() {
     <br />  <br />
     </div>
   </div>
+  
+{/*end simple mode */}
+
 <div id="syntaxMode" className="col s12">Test 2</div>
 <div id="treeVisMode" className="col s12">Test 3</div>
 

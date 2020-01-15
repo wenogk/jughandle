@@ -6,6 +6,7 @@ function Navbar() {
       <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">Storify</Link>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/Create">Create</Link></li>
+          <li><Link to="/Edit">Edit</Link></li>
           <li><Link to="/About">About</Link></li>
 
 

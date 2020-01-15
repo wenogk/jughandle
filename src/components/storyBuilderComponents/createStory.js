@@ -45,21 +45,7 @@ function CreateStory() {
      </div>
    </div>
  </div>
-  <div className="row">
-      <form className="col s12">
-        <div className="row">
-          <div className="input-field col s12">
-            <textarea id="textarea2" className="materialize-textarea" data-length="120"></textarea>
-            <label for="textarea2">Start Path</label>
-          </div>
 
-        </div>
-
-
-
-
-      </form>
-    </div>
     </div>
   <Footer />
 

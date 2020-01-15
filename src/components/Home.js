@@ -17,7 +17,7 @@ function Home() {
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
         </div>
         <div className="row center">
-          <a  href="http://materializecss.com/getting-started.html" id="download-button" className="tooltipped btn-large waves-effect waves-light float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</a>
+          <a  href="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-light float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</a>
         </div>
         <br /><br />
 

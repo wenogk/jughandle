@@ -20,33 +20,49 @@ function CreateStory() {
   return (
   <React.Fragment>
   <Navbar />
-  <h1>Create page</h1>
-  <br />
+  <div className="container">
+  <h1>Create Story</h1>
+  <div className="row">
+   <div className="col s12 m12">
+     <div className="card white">
+       <div className="card-content">
+         <span className="card-title">Story Root</span>
+         <p>I am a very simple card. I am good at containing small bits of information.
+         I am convenient because I require little markup to use effectively.</p>
+         <div className="input-field col s12">
+           <textarea id="textarea2" className="materialize-textarea" data-length="120"></textarea>
+           <label for="textarea2">Start Path</label>
+         </div>
+         <br/><br/><br/><br/>
+       </div>
+       <div className="card-action">
+       <ul className="list-inline">
+     <li><a className="waves-effect waves-light btn-small red"><i className="material-icons right">queue</i>Add question</a></li>
+<li><a className="waves-effect waves-light btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
+<li><a className="waves-effect waves-light btn-small blue"><i className="material-icons right">collections</i>Add picture</a></li>
+     </ul>
+       </div>
+     </div>
+   </div>
+ </div>
   <div className="row">
       <form className="col s12">
         <div className="row">
-          <div className="input-field col s6">
-            <input id="input_text" type="text" data-length="10" />
-            <label for="input_text">Input text</label>
-          </div>
-        </div>
-        <div className="row">
           <div className="input-field col s12">
             <textarea id="textarea2" className="materialize-textarea" data-length="120"></textarea>
-            <label for="textarea2">Textarea</label>
+            <label for="textarea2">Start Path</label>
           </div>
+
         </div>
 
 
-  <ul className="list-inline">
-    <li><a className="btn-floating red"><i className="material-icons">queue</i></a></li>
-    <li><a className="btn-floating yellow darken-1"><i className="material-icons">video_call</i></a></li>
-    <li><a className="btn-floating green"><i className="material-icons">collections</i></a></li>
-    </ul>
+
 
       </form>
     </div>
+    </div>
   <Footer />
+
   </React.Fragment>
   );
 }

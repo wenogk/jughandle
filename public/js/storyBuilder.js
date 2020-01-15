@@ -3,3 +3,4 @@
     var instances = M.FloatingActionButton.init(elems, {
       direction: 'left'
     });
+    $('.tabs').tabs();

@@ -20,18 +20,17 @@ function CreateStory() {
   return (
   <React.Fragment>
   <Navbar />
-  <div className="row">
+  <div className="row center-align">
   <div className="col s12">
     <ul className="tabs">
-      <li className="tab col s3"><a href="#test1">Test 1</a></li>
-      <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
-      <li className="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-      <li className="tab col s3"><a href="#test4">Test 4</a></li>
+      <li className="tab col s3"><a className="active" href="#simpleMode">Simple Mode</a></li>
+      <li className="tab col s3"><a  href="#syntaxMode">Syntax mode</a></li>
+      <li className="tab col s3 "><a href="#treeVisMode">Tree visualization</a></li>
     </ul>
   </div>
 
 </div>
-<div id="test1" className="col s12">
+<div id="simpleMode" className="col s12">
   <div className="container">
   <h1>Create Story</h1>
   <PathItemInput />
@@ -44,9 +43,8 @@ function CreateStory() {
     <br />  <br />
     </div>
   </div>
-<div id="test2" className="col s12">Test 2</div>
-<div id="test3" className="col s12">Test 3</div>
-<div id="test4" className="col s12">Test 4</div>
+<div id="syntaxMode" className="col s12">Test 2</div>
+<div id="treeVisMode" className="col s12">Test 3</div>
 
   <Footer />
 

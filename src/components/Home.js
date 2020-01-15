@@ -5,3 +5,5 @@ function Home() {
     <h1>THIS IS THE HOME</h1>
   );
 }
+
+export default Home;

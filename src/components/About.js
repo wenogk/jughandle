@@ -5,3 +5,5 @@ function About() {
     <h1>THIS IS THE ABOUT</h1>
   );
 }
+
+export default About;

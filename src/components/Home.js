@@ -18,7 +18,7 @@ function Home() {
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
         </div>
         <div className="row center">
-        <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-light float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</Link>
+        <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</Link>
         </div>
         <br /><br />
 

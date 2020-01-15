@@ -2,10 +2,10 @@ import React from 'react';
 import Navbar from './Navbar'
 function Home() {
   return (
-    <div>
+    <React.Fragment>
     <Navbar />
     <h1>THIS IS THE HOME</h1>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+
+function addScript(src){
+  var tag = document.createElement('script');
+  tag.async = true;
+  tag.src = src;
+  var body = document.getElementsByTagName('body')[0];
+  body.appendChild(tag);
+}
+
+const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
+
+
 function CreateStory() {
+  useEffect(() => {
+    // Update the document title using the browser API
+    addScript(scriptUrl);
+  });
+
   return (
   <React.Fragment>
   <Navbar />

@@ -7,7 +7,7 @@ function Footer() {
         <div className="container">
           <div className="row">
             <div className="col l6 s12">
-              <h5 className="white-text">Company Bio</h5>
+              <h5 className="white-text">Bio</h5>
               <p className="grey-text text-lighten-4">I am a 3rd year college student.</p>
 
 
@@ -34,7 +34,7 @@ function Footer() {
         </div>
         <div className="footer-copyright">
           <div className="container">
-          Made by <a className="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          Made by <a className="orange-text text-lighten-3" href="http://materializecss.com">D. Romeno Wenogk Fernando</a>
           </div>
         </div>
       </footer>

@@ -20,12 +20,15 @@ function CreateStory() {
   return (
   <React.Fragment>
   <Navbar />
-  <div className="row center-align">
+  <div className="row">
   <div className="col s12">
+
     <ul className="tabs">
-      <li className="tab col s3"><a className="active" href="#simpleMode">Simple Mode</a></li>
-      <li className="tab col s3"><a  href="#syntaxMode">Syntax mode</a></li>
-      <li className="tab col s3 "><a href="#treeVisMode">Tree visualization</a></li>
+
+      <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#simpleMode">Simple Mode</a></li>
+      <li className="tab col s3" style={{width:"33.3%"}}><a  href="#syntaxMode">Syntax mode</a></li>
+      <li className="tab col s3 " style={{width:"33.3%"}}><a href="#treeVisMode">Tree visualization</a></li>
+
     </ul>
   </div>
 

@@ -1,20 +1,20 @@
 import React from 'react'
-
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="purple darken-2" role="navigation">
-      <div className="nav-wrapper container"><a id="logo-container" href="/" className="brand-logo">Storify</a>
+      <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">Storify</Link>
         <ul className="right hide-on-med-and-down">
-          <li><a href="/Create">Create</a></li>
-          <li><a href="/About">About</a></li>
+          <li><Link to="/Create">Create</Link></li>
+          <li><Link to="/About">About</Link></li>
 
 
         </ul>
 
         <ul id="nav-mobile" className="sidenav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/About">About</a></li>
-          <li><a href="/Create">Create</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/About">About</Link></li>
+          <li><Link to="/Create">Create</Link></li>
         </ul>
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>

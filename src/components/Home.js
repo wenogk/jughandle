@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar'
 import Footer from './Footer'
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <React.Fragment>
@@ -17,7 +18,7 @@ function Home() {
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
         </div>
         <div className="row center">
-          <a  href="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-light float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</a>
+        <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-light float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</Link>
         </div>
         <br /><br />
 

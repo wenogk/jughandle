@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import M from "materialize-css";
 function PathItemInput() {
   let pathID = "#2";
   const [options, setOptions] = useState([])
@@ -27,9 +27,9 @@ function PathItemInput() {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li><a onClick={handleAddOption} className="waves-effect waves-light btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
-    <li><a className="waves-effect waves-light btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
-    <li><a className="waves-effect waves-light btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
+       <li><a onClick={handleAddOption} className=" btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
+    <li><a className=" btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
+    <li><a className=" btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
        </ul>
       </div>
       <ul className="collection with-header">

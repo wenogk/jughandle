@@ -16,31 +16,7 @@ function addScript(src){
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function CreateStory() {
-  useEffect(() => {
-    //addScript(scriptUrl);
-    const options = {
-      onOpenStart: () => {
-        console.log("Open Start");
-      },
-      onOpenEnd: () => {
-        console.log("Open End");
-      },
-      onCloseStart: () => {
-        console.log("Close Start");
-      },
-      onCloseEnd: () => {
-        console.log("Close End");
-      },
-      inDuration: 250,
-      outDuration: 250,
-      opacity: 0.5,
-      dismissible: false,
-      startingTop: "4%",
-      endingTop: "10%"
-    };
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
-  });
+  
 
   return (
   <React.Fragment>

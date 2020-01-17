@@ -1,8 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import M from "materialize-css";
 function PathItemInput() {
   let pathID = "#2";
   const [options, setOptions] = useState([])
+  function addScript(src){
+    var tag = document.createElement('script');
+    tag.async = true;
+    tag.src = src;
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(tag);
+  }
+
+  const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
+
+  useEffect(() => {
+    addScript(scriptUrl);
+    const options = {
+      onOpenStart: () => {
+        console.log("Open Start");
+      },
+      onOpenEnd: () => {
+        console.log("Open End");
+      },
+      onCloseStart: () => {
+        console.log("Close Start");
+      },
+      onCloseEnd: () => {
+        console.log("Close End");
+      },
+      inDuration: 250,
+      outDuration: 250,
+      opacity: 0.5,
+      dismissible: false,
+      startingTop: "4%",
+      endingTop: "10%"
+    };
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
 
   function handleAddOption() {
     let val = options.length + 1
@@ -32,14 +67,25 @@ function PathItemInput() {
     <li><a className=" btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
        </ul>
       </div>
+      { (options.length>0) &&
+
       <ul className="collection with-header">
-        <li className="collection-header"><span className="card-title">Options </span></li>
+        <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
+
+
+
         {options.map((value, index) => {
-        return (<li key={index} className="collection-item"><div>Option {value} </div></li>);
+        return (
+          <React.Fragment>
+          <li key={index} className="collection-item"><div>Option {value} </div></li>
+
+        </React.Fragment>
+      );
       })}
 
-        <li className="collection-item"><div>Alvin<a href="#!" className="secondary-content"><i className="material-icons">delete_forever</i></a></div></li>
-      </ul>
+
+
+        </ul> }
        </div>
      </div>
     </div>

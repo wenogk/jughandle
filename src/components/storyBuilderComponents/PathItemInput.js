@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import M from "materialize-css";
+
 function PathItemInput() {
   let pathID = "#2";
   const [options, setOptions] = useState([])
@@ -44,12 +45,26 @@ function PathItemInput() {
     setOptions(oldArray => [...oldArray, val]);
     //alert(JSON.stringify(options))
   }
+
   function deleteOptionHandler(e,index) {
     let newArr = [...options]
     newArr.splice(index, 1)
     setOptions(newArr);
   }
 
+  function copyPathIDHandler() {
+    const options = {
+      html: "ID copied to clipboard!",
+      inDuration: 300,
+      outDuration: 375,
+      displyLength: 4000,
+      classes: "rounded",
+      completeCallback: () => {
+        console.log("dismissed");
+      }
+    };
+    M.toast(options);
+  }
   return (
     <div className="row">
      <div className="col s12 m12">
@@ -66,9 +81,10 @@ function PathItemInput() {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li><a onClick={handleAddOption} className=" btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
-    <li><a className=" btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
-    <li><a className=" btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
+       <li><a onClick={handleAddOption} className=" btn-small purple"><i className="material-icons right">queue</i>Add option</a></li>
+    <li><a className=" btn-small black"><i className="material-icons right">video_call</i>Video</a></li>
+    <li><a className=" btn-small teal darken-4"><i className="material-icons right">collections</i>Picture</a></li>
+    <li><a onClick={(e) => {copyPathIDHandler()}} className=" btn-small red darken-3"><i className="material-icons right">content_copy</i>Copy path id</a></li>
        </ul>
       </div>
       { (options.length>0) &&

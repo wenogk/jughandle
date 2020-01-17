@@ -1,5 +1,8 @@
 import React from 'react'
 
+function handleAddOption() {
+  alert("clicked")
+}
 function PathItemInput() {
   return (
     <div className="row">
@@ -17,7 +20,7 @@ function PathItemInput() {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li><a onclick={handleAddOption} className="waves-effect waves-light btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
+       <li><a onClick={handleAddOption} className="waves-effect waves-light btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
     <li><a className="waves-effect waves-light btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
     <li><a className="waves-effect waves-light btn-small blue"><i className="material-icons right">collections</i>Add picture</a></li>
        </ul>

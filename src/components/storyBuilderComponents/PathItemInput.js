@@ -44,6 +44,11 @@ function PathItemInput() {
     setOptions(oldArray => [...oldArray, val]);
     //alert(JSON.stringify(options))
   }
+  function deleteOptionHandler(e,index) {
+    let newArr = [...options]
+    newArr.splice(index, 1)
+    setOptions(newArr);
+  }
 
   return (
     <div className="row">
@@ -76,7 +81,7 @@ function PathItemInput() {
         {options.map((value, index) => {
         return (
           <React.Fragment>
-          <li key={index} className="collection-item"><div>Option {value} </div></li>
+          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} class="secondary-content"><i class="material-icons">delete_forever</i></a></div></li>
 
         </React.Fragment>
       );

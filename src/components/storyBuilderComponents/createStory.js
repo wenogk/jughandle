@@ -16,7 +16,7 @@ function addScript(src){
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function CreateStory() {
-  
+
 
   return (
   <React.Fragment>
@@ -39,19 +39,7 @@ function CreateStory() {
 <div id="simpleMode" className="col s12">
   <div className="container">
   <h1>Create Story</h1>
-  <a className=" btn modal-trigger" href="#modal1">Modal</a>
 
-<div id="modal1" className="modal">
-  <div className="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div className="modal-footer">
-    <a href="#!" className="modal-close  btn-flat">Agree</a>
-  </div>
-</div>
-  <PathItemInput />
-  <PathItemInput />
   <PathItemInput />
   <div className="center-align"><br />
   <a className=" btn-large"><i className="material-icons left">cloud</i>PUBLISH</a>

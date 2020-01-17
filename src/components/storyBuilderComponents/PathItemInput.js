@@ -5,14 +5,14 @@ function handleAddOption() {
 }
 function PathItemInput() {
   let pathID = "#2";
+  const [options, setOptions] = useState({})
   return (
     <div className="row">
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
          <span class="new badge blue" data-badge-caption={pathID}></span>
-         <span className="card-title">Story root Story rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory root
-</span>
+         <span className="card-title">Story root </span>
            <p>I am a very simple card. I am good at containing small bits of information.
            I am convenient because I require little markup to use effectively.</p>
            <div className="input-field col s12">

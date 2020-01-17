@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 
-function handleAddOption() {
-  alert("clicked")
-}
 function PathItemInput() {
   let pathID = "#2";
-  const [options, setOptions] = useState({})
+  const [options, setOptions] = useState({ "test" : 1})
+
+  function handleAddOption() {
+    setOptions({"test": options["test"]+1});
+  }
+
   return (
     <div className="row">
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span class="new badge blue" data-badge-caption={pathID}></span>
+         <span class="new badge blue" data-badge-caption={options["test"]}></span>
          <span className="card-title">Story root </span>
            <p>I am a very simple card. I am good at containing small bits of information.
            I am convenient because I require little markup to use effectively.</p>

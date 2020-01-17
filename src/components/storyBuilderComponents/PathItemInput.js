@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 
 function PathItemInput() {
   let pathID = "#2";
-  const [options, setOptions] = useState({ "test" : 1})
+  const [options, setOptions] = useState([])
 
   function handleAddOption() {
-    setOptions({"test": options["test"]+1});
+    let val = options.length + 1
+    setOptions(oldArray => [...oldArray, val]);
+    //alert(JSON.stringify(options))
   }
 
   return (
@@ -13,7 +15,7 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span class="new badge blue" data-badge-caption={options["test"]}></span>
+         <span className="new badge blue" data-badge-caption="#1"></span>
          <span className="card-title">Story root </span>
            <p>I am a very simple card. I am good at containing small bits of information.
            I am convenient because I require little markup to use effectively.</p>
@@ -30,6 +32,14 @@ function PathItemInput() {
     <li><a className="waves-effect waves-light btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
        </ul>
       </div>
+      <ul className="collection with-header">
+        <li className="collection-header"><span className="card-title">Options </span></li>
+        {options.map((value, index) => {
+        return (<li key={index} className="collection-item"><div>Option {value} </div></li>);
+      })}
+
+        <li className="collection-item"><div>Alvin<a href="#!" className="secondary-content"><i className="material-icons">delete_forever</i></a></div></li>
+      </ul>
        </div>
      </div>
     </div>

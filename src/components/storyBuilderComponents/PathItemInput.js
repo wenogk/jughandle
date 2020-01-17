@@ -9,7 +9,12 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-           <span className="card-title">Story Root</span>
+           <span className="card-title"><div id="textbox">
+  <p class="alignleft">Text on the left.</p>
+  <p class="alignright">#2</p>
+</div>
+<div style={{clear: "both"}} ></div>
+</span>
            <p>I am a very simple card. I am good at containing small bits of information.
            I am convenient because I require little markup to use effectively.</p>
            <div className="input-field col s12">

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
+    <div className="navbar-fixed">
     <nav className="purple darken-2" role="navigation">
       <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">Storify</Link>
         <ul className="right hide-on-med-and-down">
@@ -20,6 +21,7 @@ function Navbar() {
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>
     </nav>
+    </div>
   );
 }
 

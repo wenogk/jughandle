@@ -4,3 +4,4 @@
       direction: 'left'
     });
     $('.tabs').tabs();
+    $('.pushpin').pushpin();

@@ -48,7 +48,7 @@ function CreateStory() {
     <br />  <br />
     </div>
   </div>
-  
+
 {/*end simple mode */}
 
 <div id="syntaxMode" className="col s12">Test 2</div>

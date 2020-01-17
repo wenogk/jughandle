@@ -4,16 +4,14 @@ function handleAddOption() {
   alert("clicked")
 }
 function PathItemInput() {
+  let pathID = "#2";
   return (
     <div className="row">
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-           <span className="card-title"><div id="textbox">
-  <p class="alignleft">Text on the left.</p>
-  <p class="alignright">#2</p>
-</div>
-<div style={{clear: "both"}} ></div>
+         <span class="new badge blue" data-badge-caption={pathID}></span>
+         <span className="card-title">Story root Story rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory rootStory root
 </span>
            <p>I am a very simple card. I am good at containing small bits of information.
            I am convenient because I require little markup to use effectively.</p>
@@ -27,7 +25,7 @@ function PathItemInput() {
          <ul className="list-inline">
        <li><a onClick={handleAddOption} className="waves-effect waves-light btn-small red"><i className="material-icons right">queue</i>Add option</a></li>
     <li><a className="waves-effect waves-light btn-small green"><i className="material-icons right">video_call</i>Add video</a></li>
-    <li><a className="waves-effect waves-light btn-small blue"><i className="material-icons right">collections</i>Add picture</a></li>
+    <li><a className="waves-effect waves-light btn-small orange"><i className="material-icons right">collections</i>Add picture</a></li>
        </ul>
       </div>
        </div>

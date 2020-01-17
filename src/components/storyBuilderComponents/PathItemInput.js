@@ -52,8 +52,7 @@ function PathItemInput() {
          <div className="card-content">
          <span className="new badge blue" data-badge-caption="#1"></span>
          <span className="card-title">Story root </span>
-           <p>I am a very simple card. I am good at containing small bits of information.
-           I am convenient because I require little markup to use effectively.</p>
+           <p>This is the root.</p>
            <div className="input-field col s12">
              <textarea id="textarea2" className="materialize-textarea" data-length="120"></textarea>
              <label for="textarea2">Start Path</label>

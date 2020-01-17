@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import M from "materialize-css";
 
 function PathItemInput() {
-  let pathID = "#2";
+  let pathID = "#root";
   const [options, setOptions] = useState([])
   function addScript(src){
     var tag = document.createElement('script');
@@ -70,7 +70,7 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span className="new badge blue" data-badge-caption="#1"></span>
+         <span className="new badge blue" data-badge-caption="#root"></span>
          <span className="card-title">Story root </span>
            <p>This is the root.</p>
            <div className="input-field col s12">
@@ -81,10 +81,10 @@ function PathItemInput() {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li><a onClick={handleAddOption} className=" btn-small purple"><i className="material-icons right">queue</i>Add option</a></li>
-    <li><a className=" btn-small black"><i className="material-icons right">video_call</i>Video</a></li>
-    <li><a className=" btn-small teal darken-4"><i className="material-icons right">collections</i>Picture</a></li>
-    <li><a onClick={(e) => {copyPathIDHandler()}} className=" btn-small red darken-3"><i className="material-icons right">content_copy</i>Copy path id</a></li>
+       <li style={{padding:"5px"}}><a onClick={handleAddOption} className=" btn-small purple"><i className="material-icons right">queue</i>Add option</a></li>
+    <li style={{padding:"5px"}}><a className=" btn-small black"><i className="material-icons right">video_call</i>Video</a></li>
+    <li style={{padding:"5px"}}><a className=" btn-small teal darken-4"><i className="material-icons right">collections</i>Picture</a></li>
+    <li style={{padding:"5px"}}><a onClick={(e) => {copyPathIDHandler()}} className=" btn-small red darken-3"><i className="material-icons right">content_copy</i>Copy path id</a></li>
        </ul>
       </div>
       { (options.length>0) &&

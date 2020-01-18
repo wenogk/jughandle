@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-function Navbar() {
+
+
+function Navbar2() {
   return (
     //<div className="navbar-fixed">
-    <nav className="purple darken-2" role="navigation">
+    <nav className="nav-extended purple darken-2" role="navigation">
       <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">jughandle</Link>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/Create">Create</Link></li>
@@ -20,9 +22,18 @@ function Navbar() {
         </ul>
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>
+      <div class="nav-content ">
+      <ul className="tabs tabs-transparent">
+
+        <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#storyMode">Story Path Builder</a></li>
+        <li className="tab col s3" style={{width:"33.3%"}}><a  href="#previewMode">Preview</a></li>
+        <li className="tab col s3 " style={{width:"33.3%"}}><a href="#treeVisMode">Tree visualization</a></li>
+
+      </ul>
+      </div>
     </nav>
     //</div>
   );
 }
 
-export default Navbar;
+export default Navbar2;

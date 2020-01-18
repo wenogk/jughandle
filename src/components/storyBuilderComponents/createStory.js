@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../Navbar'
+import Navbar2 from '../Navbar2'
 import Footer from '../Footer'
 import PathItemInput from './PathItemInput'
 import M from "materialize-css";
@@ -20,17 +20,11 @@ function CreateStory() {
 
   return (
   <React.Fragment>
-  <Navbar />
+  <Navbar2 />
   <div className="row" id="option">
   <div className="col s12">
 
-    <ul className="tabs">
 
-      <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#storyMode">Story Path Builder</a></li>
-      <li className="tab col s3" style={{width:"33.3%"}}><a  href="#previewMode">Preview</a></li>
-      <li className="tab col s3 " style={{width:"33.3%"}}><a href="#treeVisMode">Tree visualization</a></li>
-
-    </ul>
   </div>
 
 </div>

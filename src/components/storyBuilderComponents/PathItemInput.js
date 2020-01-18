@@ -71,7 +71,7 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span className="new badge blue" data-badge-caption="#root"></span>
+         <span onClick={(e) => {copyPathIDHandler()}} className="hoverPointer new badge blue" data-badge-caption="#root"></span>
          <span className="card-title">Story root </span>
            <p>This is the root.</p>
            <div className="input-field col s12">
@@ -98,7 +98,7 @@ function PathItemInput() {
         {options.map((value, index) => {
         return (
           <React.Fragment>
-          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons">delete_forever</i></a><a className="secondary-content"><i className="material-icons">edit</i></a></div></li>
+          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
 
         </React.Fragment>
       );

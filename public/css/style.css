@@ -108,3 +108,7 @@
 a:hover {
  cursor:pointer;
 }
+
+.hoverPointer {
+  cursor:pointer;
+}

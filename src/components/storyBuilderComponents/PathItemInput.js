@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 function PathItemInput() {
@@ -13,7 +13,7 @@ function PathItemInput() {
   }
 
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
-  const firstTextarea = useRef(null);
+
   useEffect(() => {
     M.Tooltip.init(".tooltipped");
     addScript(scriptUrl);
@@ -75,7 +75,7 @@ function PathItemInput() {
          <span className="card-title">Story root </span>
            <p>This is the root.</p>
            <div className="input-field col s12">
-             <textarea ref={firstTextarea} id="textarea2" className="materialize-textarea" data-length="120"></textarea>
+             <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120"></textarea>
              <label for="textarea2">Start Path</label>
            </div>
            <br/>

@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
-    <div className="navbar-fixed">
-    <nav className="purple darken-2" role="navigation">
+    //<div className="navbar-fixed">
+    <nav className="purple darken-2 pushpin" role="navigation">
       <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">jughandle</Link>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/Create">Create</Link></li>
@@ -21,7 +21,7 @@ function Navbar() {
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>
     </nav>
-    </div>
+    //</div>
   );
 }
 

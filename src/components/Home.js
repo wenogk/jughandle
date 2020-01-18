@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import { Link } from "react-router-dom";
 import M from "materialize-css";
+
 function Home() {
 
 useEffect(() => {

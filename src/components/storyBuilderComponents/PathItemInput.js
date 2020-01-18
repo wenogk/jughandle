@@ -40,7 +40,10 @@ function PathItemInput() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
   });
-
+  function randomID () {
+    //check if duplicate id
+  return Math.random().toString(36).substr(2, 9);
+  }
   function handleAddOption() {
     let val = options.length + 1
     setOptions(oldArray => [...oldArray, val]);

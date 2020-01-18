@@ -26,8 +26,8 @@ function CreateStory() {
 
     <ul className="tabs">
 
-      <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#simpleMode">Simple Mode</a></li>
-      <li className="tab col s3" style={{width:"33.3%"}}><a  href="#syntaxMode">Syntax mode</a></li>
+      <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#storyMode">Story Path Builder</a></li>
+      <li className="tab col s3" style={{width:"33.3%"}}><a  href="#previewMode">Preview</a></li>
       <li className="tab col s3 " style={{width:"33.3%"}}><a href="#treeVisMode">Tree visualization</a></li>
 
     </ul>
@@ -36,7 +36,7 @@ function CreateStory() {
 </div>
 {/*start simple mode */}
 
-<div id="simpleMode" className="col s12">
+<div id="storyMode" className="col s12">
   <div className="container">
   <h1>Create Story</h1>
 
@@ -51,7 +51,9 @@ function CreateStory() {
 
 {/*end simple mode */}
 
-<div id="syntaxMode" className="col s12">Test 2</div>
+<div id="previewMode" className="col s12">
+Preview Mode
+</div>
 <div id="treeVisMode" className="col s12">Test 3</div>
 
   <Footer />

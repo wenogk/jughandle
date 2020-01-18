@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import M from "materialize-css";
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 function PathItemInput() {
   let pathID = "#root";
   const [options, setOptions] = useState([])
@@ -71,7 +71,7 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span onClick={(e) => {copyPathIDHandler()}} className="hoverPointer new badge blue" data-badge-caption="#root"></span>
+         <span className="hoverPointer new badge blue" data-badge-caption="#root"></span>
          <span className="card-title">Story root </span>
            <p>This is the root.</p>
            <div className="input-field col s12">
@@ -85,7 +85,13 @@ function PathItemInput() {
        <li style={{padding:"5px"}}><a onClick={handleAddOption} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
-    <li style={{padding:"5px"}}><a onClick={(e) => {copyPathIDHandler()}} className="tooltipped btn-small red darken-3" data-tooltip="Copy the current path id for use as a reference for an option."><i className="material-icons right">content_copy</i>Copy path id</a></li>
+    <li style={{padding:"5px"}}>
+    <CopyToClipboard text={"idVal" /* option id val here! */} 
+              onCopy={() => {copyPathIDHandler()}}>
+              <a className="tooltipped btn-small red darken-3" data-tooltip="Copy the current path id for use as a reference for an option."><i className="material-icons right">content_copy</i>Copy path id</a>
+            </CopyToClipboard>
+
+    </li>
        </ul>
       </div>
       { (options.length>0) &&

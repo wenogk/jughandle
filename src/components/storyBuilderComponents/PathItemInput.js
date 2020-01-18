@@ -98,7 +98,7 @@ function PathItemInput() {
         {options.map((value, index) => {
         return (
           <React.Fragment>
-          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} class="secondary-content"><i class="material-icons">delete_forever</i></a></div></li>
+          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons">delete_forever</i></a><a className="secondary-content"><i className="material-icons">edit</i></a></div></li>
 
         </React.Fragment>
       );

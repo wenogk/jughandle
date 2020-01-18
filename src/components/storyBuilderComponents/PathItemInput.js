@@ -15,6 +15,7 @@ function PathItemInput() {
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
   useEffect(() => {
+    M.Tooltip.init(".tooltipped");
     addScript(scriptUrl);
     const options = {
       onOpenStart: () => {
@@ -81,10 +82,10 @@ function PathItemInput() {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li style={{padding:"5px"}}><a onClick={handleAddOption} className=" btn-small purple"><i className="material-icons right">queue</i>Add option</a></li>
-    <li style={{padding:"5px"}}><a className=" btn-small black"><i className="material-icons right">video_call</i>Video</a></li>
-    <li style={{padding:"5px"}}><a className=" btn-small teal darken-4"><i className="material-icons right">collections</i>Picture</a></li>
-    <li style={{padding:"5px"}}><a onClick={(e) => {copyPathIDHandler()}} className=" btn-small red darken-3"><i className="material-icons right">content_copy</i>Copy path id</a></li>
+       <li style={{padding:"5px"}}><a onClick={handleAddOption} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
+    <li style={{padding:"5px"}}><a className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
+    <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
+    <li style={{padding:"5px"}}><a onClick={(e) => {copyPathIDHandler()}} className="tooltipped btn-small red darken-3" data-tooltip="Copy the current path id for use as a reference for an option."><i className="material-icons right">content_copy</i>Copy path id</a></li>
        </ul>
       </div>
       { (options.length>0) &&

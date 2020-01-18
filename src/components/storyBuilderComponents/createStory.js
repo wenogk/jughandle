@@ -38,7 +38,9 @@ function CreateStory() {
 
 <div id="storyMode" className="col s12">
   <div className="container">
-  <h1>Create Story</h1>
+  <div className="typewriter">
+  <h1 className="header center hide-on-small-only" >create your story.</h1><br/>
+  </div>
 
   <PathItemInput />
   <div className="center-align"><br />

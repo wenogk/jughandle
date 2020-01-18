@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { Link } from "react-router-dom";
+import M from "materialize-css";
 function Home() {
+
+useEffect(() => {
+  M.Tooltip.init(".tooltipped");
+});
+
+
   return (
     <React.Fragment>
     <Navbar />

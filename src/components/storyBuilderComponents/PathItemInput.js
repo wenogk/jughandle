@@ -76,7 +76,6 @@ function PathItemInput() {
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption="#root"></span>
          <span className="card-title">Story root </span>
-           <p>This is the root.</p>
            <div className="input-field col s12">
              <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120"></textarea>
              <label for="textarea2">Start Path</label>

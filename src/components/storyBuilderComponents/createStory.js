@@ -21,9 +21,7 @@ function CreateStory() {
     //check if duplicate id
     return Math.random().toString(36).substr(2, 9);
   }
-  function updatePathItem() {
 
-  }
 const [PATHS, setPathObject] = useState(
   {
     "root" : {
@@ -40,6 +38,14 @@ const [PATHS, setPathObject] = useState(
     },
   }
 ); //k
+function updatePathItem(idVal, newPathItemObject) {
+  let newObj = {
+    ...PATHS,
+    idVal : newPathItemObject
+  }
+  setPathObject(newObj);
+  console.log(PATHS)
+}
 var paths = []
 for (let idVal in PATHS) {
   paths.push(<PathItemInput pathID={idVal} textVal={PATHS[idVal].text} onChanged={updatePathItem} />);

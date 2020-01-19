@@ -55,8 +55,14 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     setOptions(oldArray => [...oldArray, val]);
   }
 
-  function handleTextChange() {
-    setPathItem({...PATH_ITEM, })
+  function handleTextChange(newText) {
+    setPathItem({
+      ...PATH_ITEM,
+      options: PATH_ITEM.options,
+      text: newText
+    })
+    //console.log(PATH_ITEM)
+    onChanged(pathID, PATH_ITEM)
   }
 
   function deleteOptionHandler(e,index) {
@@ -86,7 +92,13 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
          <span className="card-title">Story root </span>
            <div className="input-field col s12">
-             <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120">{textVal}</textarea>
+             <textarea ref={input => {
+               if(pathID=="root") {
+               input && input.focus()
+                }
+             }
+           }
+           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {handleTextChange(e.target.value)}}>{PATH_ITEM.text}</textarea>
              <label for="textarea2">Start Path</label>
            </div>
            <br/>

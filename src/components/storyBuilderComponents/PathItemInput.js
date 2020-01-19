@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-const PathItemInput = ({ onChanged, pathID }) => {
+const PathItemInput = ({ onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
   function addScript(src){
     var tag = document.createElement('script');
@@ -71,10 +71,10 @@ const PathItemInput = ({ onChanged, pathID }) => {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span className="hoverPointer new badge blue" data-badge-caption={pathID}></span>
+         <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
          <span className="card-title">Story root </span>
            <div className="input-field col s12">
-             <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120"></textarea>
+             <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120">{textVal}</textarea>
              <label for="textarea2">Start Path</label>
            </div>
            <br/>

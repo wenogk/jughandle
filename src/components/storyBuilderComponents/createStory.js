@@ -25,9 +25,19 @@ function CreateStory() {
 
   }
 const [PATHS, setPathObject] = useState(
-  {}
+  {
+    "root" : {
+      text: "random text here"
+    },
+    "goof" : {
+      text: "yolo boi"
+    },
+  }
 ); //k
-
+var paths = []
+for (let idVal in PATHS) {
+  paths.push(<PathItemInput pathID={idVal} textVal={PATHS[idVal].text} onChanged={updatePathItem} />);
+}
   return (
   <React.Fragment>
   <Navbar2 />
@@ -45,8 +55,7 @@ const [PATHS, setPathObject] = useState(
   <div className="typewriter">
   <h1 className="header center hide-on-small-only" >create your story.</h1><br/>
   </div>
-  <PathItemInput pathID="rootab" onChanged={updatePathItem} />
-
+  {paths}
   <div className="center-align"><br />
   <a className=" btn-large"><i className="material-icons left">cloud</i>PUBLISH</a>
 

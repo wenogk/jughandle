@@ -16,6 +16,14 @@ function addScript(src){
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function CreateStory() {
+
+  function randomID () {
+    //check if duplicate id
+    return Math.random().toString(36).substr(2, 9);
+  }
+  function updatePathItem() {
+
+  }
 const [PATHS, setPathObject] = useState(
   {}
 ); //k
@@ -37,7 +45,8 @@ const [PATHS, setPathObject] = useState(
   <div className="typewriter">
   <h1 className="header center hide-on-small-only" >create your story.</h1><br/>
   </div>
-  <PathItemInput />
+  <PathItemInput pathID="rootab" onChanged={updatePathItem} />
+
   <div className="center-align"><br />
   <a className=" btn-large"><i className="material-icons left">cloud</i>PUBLISH</a>
 

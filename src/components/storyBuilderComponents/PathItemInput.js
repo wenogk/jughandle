@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-function PathItemInput() {
-  let pathID = "#root";
+
+const PathItemInput = ({ onChanged, pathID }) => {
   const [options, setOptions] = useState([])
   function addScript(src){
     var tag = document.createElement('script');
@@ -40,10 +40,7 @@ function PathItemInput() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
   });
-  function randomID () {
-    //check if duplicate id
-  return Math.random().toString(36).substr(2, 9);
-  }
+
   function handleAddOption() {
     let val = options.length + 1
     setOptions(oldArray => [...oldArray, val]);
@@ -74,7 +71,7 @@ function PathItemInput() {
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
-         <span className="hoverPointer new badge blue" data-badge-caption="#root"></span>
+         <span className="hoverPointer new badge blue" data-badge-caption={pathID}></span>
          <span className="card-title">Story root </span>
            <div className="input-field col s12">
              <textarea ref={input => input && input.focus()} id="textarea2" className="materialize-textarea" data-length="120"></textarea>

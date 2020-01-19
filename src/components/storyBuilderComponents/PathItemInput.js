@@ -85,7 +85,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     <li style={{padding:"5px"}}><a className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
     <li style={{padding:"5px"}}>
-    <CopyToClipboard text={"idVal" /* option id val here! */}
+    <CopyToClipboard text={pathID /* option id val here! */}
               onCopy={() => {copyPathIDHandler()}}>
               <a className="tooltipped btn-small red darken-3" data-tooltip="Copy the current path id for use as a reference for an option."><i className="material-icons right">content_copy</i>Copy path id</a>
             </CopyToClipboard>

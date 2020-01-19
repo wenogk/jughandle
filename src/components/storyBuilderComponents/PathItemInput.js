@@ -4,6 +4,14 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const PathItemInput = ({ onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
+  const [PATH_ITEM, setPathItem] = useState(
+    {
+      text : textVal,
+      options: [
+        
+      ]
+    }
+  );
   function addScript(src){
     var tag = document.createElement('script');
     tag.async = true;

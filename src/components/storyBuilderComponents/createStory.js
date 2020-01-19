@@ -27,10 +27,16 @@ function CreateStory() {
 const [PATHS, setPathObject] = useState(
   {
     "root" : {
-      text: "random text here"
+      text: "random text here",
+      options: [
+
+      ]
     },
     "goof" : {
-      text: "yolo boi"
+      text: "yolo boi",
+      options: [
+
+      ]
     },
   }
 ); //k

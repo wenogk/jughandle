@@ -8,7 +8,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     {
       text : textVal,
       options: [
-        
+
       ]
     }
   );
@@ -23,6 +23,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
   useEffect(() => {
+    
     M.Tooltip.init(".tooltipped");
     addScript(scriptUrl);
     const options = {

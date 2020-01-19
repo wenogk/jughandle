@@ -23,7 +23,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
   useEffect(() => {
-    
+
     M.Tooltip.init(".tooltipped");
     addScript(scriptUrl);
     const options = {
@@ -53,7 +53,10 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
   function handleAddOption() {
     let val = options.length + 1
     setOptions(oldArray => [...oldArray, val]);
-    //alert(JSON.stringify(options))
+  }
+
+  function handleTextChange() {
+    setPathItem({...PATH_ITEM, })
   }
 
   function deleteOptionHandler(e,index) {

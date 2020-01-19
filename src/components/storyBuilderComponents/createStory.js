@@ -16,7 +16,9 @@ function addScript(src){
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function CreateStory() {
-
+const [PATHS, setPathObject] = useState(
+  {}
+); //k
 
   return (
   <React.Fragment>
@@ -35,7 +37,6 @@ function CreateStory() {
   <div className="typewriter">
   <h1 className="header center hide-on-small-only" >create your story.</h1><br/>
   </div>
-
   <PathItemInput />
   <div className="center-align"><br />
   <a className=" btn-large"><i className="material-icons left">cloud</i>PUBLISH</a>

@@ -41,8 +41,8 @@ const [PATHS, setPathObject] = useState(
 function updatePathItem(idVal, newPathItemObject) {
   let newObj = {
     ...PATHS,
-    idVal : newPathItemObject
   }
+  newObj[idVal] = newPathItemObject;
   setPathObject(newObj);
   console.log(PATHS)
 }

@@ -20,13 +20,17 @@ function reducer(state, action) {
   switch (action.type) {
     case "add-option" :
       let newOption = {
-        pathID : action.pathID,
+        pathID : action.newOptionID,
         text : action.text
       }
       newState[action.pathID] = {
         text : state[action.pathID].text,
         options : [...state[action.pathID].options, newOption],
       };
+      newState[action.newOptionID] = {
+        text : "New path text",
+        options: []
+      }
       console.log(JSON.stringify(state));
       return newState;
     case "delete-option" :
@@ -52,25 +56,14 @@ function reducer(state, action) {
 
 export default function CreateStory() {
 
-  function randomID () {
-    //check if duplicate id
-    return Math.random().toString(36).substr(2, 9);
-  }
+
 
 const [PATHS, dispatch] = useReducer(reducer,
   {
     "root" : {
       text: "random text here",
-      options: [
-
-      ]
-    },
-    "goof" : {
-      text: "yolo boi",
-      options: [
-
-      ]
-    },
+      options: []
+    }
   }
 ); //k
 function updatePathItem(idVal, newPathItemObject) {

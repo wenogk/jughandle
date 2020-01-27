@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+function randomID () {
+  //check if duplicate id
+  function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
+}
 const PathItemInput = ({ onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
   const [PATH_ITEM, setPathItem] = useState(
@@ -51,8 +57,9 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
   });
 
   function handleAddOption() {
-    let val = options.length + 1
-    setOptions(oldArray => [...oldArray, val]);
+    let newID = randomID();
+    setOptions(oldArray => [...oldArray, newID]);
+    onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
   }
 
   function handleTextChange(newText) {
@@ -84,13 +91,15 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     };
     M.toast(options);
   }
+  let title = "Story path " +pathID;
+
   return (
     <div className="row">
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
-         <span className="card-title">Story root </span>
+         <span className="card-title">{title} </span>
            <div className="input-field col s12">
              <textarea ref={input => {
                if(pathID=="root") {

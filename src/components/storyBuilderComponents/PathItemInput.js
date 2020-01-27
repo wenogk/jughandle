@@ -71,7 +71,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     setOptions(newArr);
   }
 
-  function copyPathIDHandler() {
+  function copyPathIDSuccess() {
     const options = {
       html: "ID copied to clipboard!",
       inDuration: 300,
@@ -94,7 +94,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
            <div className="input-field col s12">
              <textarea ref={input => {
                if(pathID=="root") {
-               input && input.focus()
+               //input && input.focus()
                 }
              }
            }
@@ -110,7 +110,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
     <li style={{padding:"5px"}}>
     <CopyToClipboard text={pathID /* option id val here! */}
-              onCopy={() => {copyPathIDHandler()}}>
+              onCopy={() => {copyPathIDSuccess()}}>
               <a className="tooltipped btn-small red darken-3" data-tooltip="Copy the current path id for use as a reference for an option."><i className="material-icons right">content_copy</i>Copy path id</a>
             </CopyToClipboard>
 

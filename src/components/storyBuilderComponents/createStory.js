@@ -16,13 +16,22 @@ function addScript(src){
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function reducer(state, action) {
+  let newState = {...state}
   switch (action.type) {
     case "add-option" :
-      return;
+      let newOption = {
+        pathID : action.pathID,
+        text : action.text
+      }
+      newState[action.pathID] = {
+        text : state[action.pathID].text,
+        options : [...state[action.pathID].options, newOption],
+      };
+      console.log(JSON.stringify(state));
+      return newState;
     case "delete-option" :
       return;
     case "change-path-text":
-      let newState = {...state}
       newState[action.pathID] = {
         text : action.text,
         options : [...state[action.pathID].options],

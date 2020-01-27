@@ -93,12 +93,31 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   }
 
   return (
+    <React.Fragment>
+    <div
+        id="modal1"
+        className="modal"
+      >
+        <div className="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a className="modal-close waves-effect waves-red btn-flat">
+            Disagree
+          </a>
+          <a className="modal-close waves-effect waves-green btn-flat">
+            Agree
+          </a>
+        </div>
+      </div>
     <div className="row">
      <div className="col s12 m12">
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
-         <span className="card-title">{title} </span>
+         <span className="card-title" >{title} </span>
+         <a data-target="modal1">Modal</a>
            <div className="input-field col s12">
              <textarea ref={input => {
                if(pathID=="root") {
@@ -147,6 +166,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
        </div>
      </div>
     </div>
+    </React.Fragment>
   );
 }
 

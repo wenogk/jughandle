@@ -30,7 +30,7 @@ function reducer(state, action) {
       };
       newState[action.newOptionID] = {
         title : "Story path " + action.newOptionID,
-        text : "New path text",
+        text : "",
         options: []
       }
       console.log(JSON.stringify(state));

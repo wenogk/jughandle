@@ -62,7 +62,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
       text: newText
     })
     //console.log(PATH_ITEM)
-    onChanged(pathID, PATH_ITEM)
+    //onChanged(pathID, PATH_ITEM)
   }
 
   function deleteOptionHandler(e,index) {
@@ -98,7 +98,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
                 }
              }
            }
-           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {handleTextChange(e.target.value)}}>{PATH_ITEM.text}</textarea>
+           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{PATH_ITEM.text}</textarea>
              <label for="textarea2">Start Path</label>
            </div>
            <br/>

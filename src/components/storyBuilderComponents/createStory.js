@@ -22,11 +22,18 @@ function reducer(state, action) {
     case "delete-option" :
       return;
     case "change-path-text":
-      return;
+      let newState = {...state}
+      newState[action.pathID] = {
+        text : action.text,
+        options : [...state[action.pathID].options],
+      };
+      console.log(JSON.stringify(state));
+      return newState;
+
     case "change-option-text":
       return;
     case "add-video" :
-     return;
+      return;
     case "add-image":
       return;
     default:
@@ -41,7 +48,7 @@ export default function CreateStory() {
     return Math.random().toString(36).substr(2, 9);
   }
 
-const [{PATHS}, dispatch] = useReducer(reducer,
+const [PATHS, dispatch] = useReducer(reducer,
   {
     "root" : {
       text: "random text here",
@@ -62,7 +69,7 @@ function updatePathItem(idVal, newPathItemObject) {
     ...PATHS,
   }
   newObj[idVal] = newPathItemObject;
-  setPathObject(newObj);
+  //setPathObject(newObj);
   console.log(PATHS)
 }
 var paths = []

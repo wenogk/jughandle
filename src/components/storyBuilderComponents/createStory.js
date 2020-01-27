@@ -65,7 +65,7 @@ const [PATHS, dispatch] = useReducer(reducer,
   {
     "root" : {
       title: "Start Root Path",
-      text: "random text here",
+      text: "",
       options: []
     }
   }

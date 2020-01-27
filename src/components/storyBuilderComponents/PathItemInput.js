@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ListEditableItem from './ListEditableItem'
-function randomID () { 
+function randomID () {
   //check if duplicate id
   function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -11,14 +11,7 @@ function randomID () {
 }
 const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
-  const [PATH_ITEM, setPathItem] = useState(
-    {
-      text : textVal,
-      options: [
 
-      ]
-    }
-  );
   function addScript(src){
     var tag = document.createElement('script');
     tag.async = true;
@@ -63,20 +56,14 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
     onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
   }
 
-  function handleTextChange(newText) {
-    setPathItem({
-      ...PATH_ITEM,
-      options: [...PATH_ITEM.options],
-      text: newText
-    })
-    //console.log(PATH_ITEM)
-    //onChanged(pathID, PATH_ITEM)
-  }
-
   function deleteOptionHandler(e,index) {
     let newArr = [...options]
     newArr.splice(index, 1)
     setOptions(newArr);
+  }
+
+  function editOptionHandler(e,index) {
+    //nothing
   }
 
   function copyPathIDSuccess() {
@@ -126,7 +113,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
                 }
              }
            }
-           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{PATH_ITEM.text}</textarea>
+           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{textVal}</textarea>
              <label for="textarea2">{(pathID =="root") ? "Start path text" : ""}</label>
            </div>
            <br/>
@@ -156,7 +143,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem title={value} pathID={index} />
+        <ListEditableItem title={value} pathID={index} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
 
       );
       })}

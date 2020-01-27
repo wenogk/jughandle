@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import Navbar2 from '../Navbar2'
 import Footer from '../Footer'
 import PathItemInput from './PathItemInput'
@@ -15,14 +15,33 @@ function addScript(src){
 
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
-function CreateStory() {
+function reducer(state, action) {
+  switch (action.type) {
+    case "add-option" :
+      return;
+    case "delete-option" :
+      return;
+    case "change-path-text":
+      return;
+    case "change-option-text":
+      return;
+    case "add-video" :
+     return;
+    case "add-image":
+      return;
+    default:
+      return state;
+  }
+}
+
+export default function CreateStory() {
 
   function randomID () {
     //check if duplicate id
     return Math.random().toString(36).substr(2, 9);
   }
 
-const [PATHS, setPathObject] = useState(
+const [{PATHS}, dispatch] = useReducer(reducer,
   {
     "root" : {
       text: "random text here",
@@ -48,7 +67,7 @@ function updatePathItem(idVal, newPathItemObject) {
 }
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput pathID={idVal} textVal={PATHS[idVal].text} onChanged={updatePathItem} />);
+  paths.push(<PathItemInput pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} />);
 }
   return (
   <React.Fragment>
@@ -81,12 +100,10 @@ for (let idVal in PATHS) {
 <div id="previewMode" className="col s12">
 Preview Mode
 </div>
-<div id="treeVisMode" className="col s12">Test 3</div>
+<div id="treeVisMode" className="col s12">Tree visualization mode</div>
 
   <Footer />
 
   </React.Fragment>
   );
 }
-
-export default CreateStory;

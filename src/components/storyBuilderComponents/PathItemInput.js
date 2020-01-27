@@ -58,7 +58,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
   function handleTextChange(newText) {
     setPathItem({
       ...PATH_ITEM,
-      options: PATH_ITEM.options,
+      options: [...PATH_ITEM.options],
       text: newText
     })
     //console.log(PATH_ITEM)

@@ -24,10 +24,12 @@ function reducer(state, action) {
         text : action.text
       }
       newState[action.pathID] = {
+        title : state[action.pathID].title,
         text : state[action.pathID].text,
         options : [...state[action.pathID].options, newOption],
       };
       newState[action.newOptionID] = {
+        title : "Story path " + action.newOptionID,
         text : "New path text",
         options: []
       }
@@ -37,6 +39,7 @@ function reducer(state, action) {
       return;
     case "change-path-text":
       newState[action.pathID] = {
+        title : state[action.pathID].title,
         text : action.text,
         options : [...state[action.pathID].options],
       };
@@ -61,6 +64,7 @@ export default function CreateStory() {
 const [PATHS, dispatch] = useReducer(reducer,
   {
     "root" : {
+      title: "Start Root Path",
       text: "random text here",
       options: []
     }
@@ -76,7 +80,7 @@ function updatePathItem(idVal, newPathItemObject) {
 }
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} />);
+  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} />);
 }
   return (
   <React.Fragment>

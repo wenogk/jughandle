@@ -8,7 +8,7 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ onChanged, pathID, textVal }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
   const [PATH_ITEM, setPathItem] = useState(
     {
@@ -91,7 +91,6 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
     };
     M.toast(options);
   }
-  let title = "Story path " +pathID;
 
   return (
     <div className="row">
@@ -108,7 +107,7 @@ const PathItemInput = ({ onChanged, pathID, textVal }) => {
              }
            }
            id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{PATH_ITEM.text}</textarea>
-             <label for="textarea2">Start Path</label>
+             <label for="textarea2">{(pathID =="root") ? "Start path text" : ""}</label>
            </div>
            <br/>
          </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-function randomID () {
+import ListEditableItem from './ListEditableItem'
+function randomID () { 
   //check if duplicate id
   function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -153,10 +154,10 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
 
         {options.map((value, index) => {
         return (
-          <React.Fragment>
-          <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
+        ///  <React.Fragment>
+        //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
+        <ListEditableItem title={value} pathID={index} />
 
-        </React.Fragment>
       );
       })}
 

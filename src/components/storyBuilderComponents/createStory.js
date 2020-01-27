@@ -59,8 +59,6 @@ function reducer(state, action) {
 
 export default function CreateStory() {
 
-
-
 const [PATHS, dispatch] = useReducer(reducer,
   {
     "root" : {

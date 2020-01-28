@@ -3,10 +3,21 @@ import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const ListEditableItem = ({ title, parentID, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback }) => {
+const inputBox = useRef("first");
+const inputBox2 = useRef("second");
 const [optionTitle, setOptionTitle] = useState(title);
 const [editOptionTitle, setEditOptionTitle] = useState(title);
 const [editMode, setEditMode] = useState(editModeVal);
 const [setupMode, setSetupMode] = useState(true);
+
+useEffect(() => {
+  if(setupMode) {
+    inputBox.current.focus();
+  } else if(editMode) {
+    inputBox2.current.focus();
+  }
+}, [editMode,setupMode]);
+
 function toggleEditMode() {
   setEditMode(!editMode);
 }
@@ -28,7 +39,7 @@ return(
       setupCompleteCallback(parentID,pathID,editOptionTitle);
       setSetupMode(false);
     }}>
-        <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+        <input ref={inputBox} type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
         </form> </li>
     </React.Fragment>
   );
@@ -43,7 +54,7 @@ return(
       editCallback(pathID, editOptionTitle);
       toggleEditMode();
     }}>
-        <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+        <input ref={inputBox2} type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
         </form> </li>
     </React.Fragment>
   );

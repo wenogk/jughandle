@@ -24,7 +24,7 @@ return(
     <form onSubmit={e=> {
       e.preventDefault();
       setOptionTitle(editOptionTitle);
-      editCallback(pathID, editOptionTitle)
+      //editCallback(pathID, editOptionTitle)
       setupCompleteCallback(parentID,pathID,title);
       setSetupMode(false);
     }}>

@@ -52,7 +52,12 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
 
   function handleAddOption() {
     let newID = randomID();
-    setOptions(oldArray => [...oldArray, newID]);
+    let newOption = {
+      pathID : newID,
+      text : ""
+    }
+    let newOptionsArr = [...options, newOption];
+    setOptions(newOptionsArr);
     onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
   }
 
@@ -137,11 +142,12 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
       <ul className="collection with-header">
         <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
 
-        {options.map((value, index) => {
+        {options.map((value) => {
+          console.log("TITLE IS " + value.title);
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem editModeVal={false} title={value} pathID={index} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
+        <ListEditableItem editModeVal={false} title={value.text} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
 
       );
       })}

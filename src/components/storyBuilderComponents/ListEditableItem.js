@@ -23,7 +23,8 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      //editCallback(pathID, editOptionTitle)
+      setOptionTitle(editOptionTitle);
+      editCallback(pathID, editOptionTitle)
       setSetupMode(false);
     }}>
         <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
@@ -37,7 +38,9 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      //editCallback(pathID, editOptionTitle)
+      setOptionTitle(editOptionTitle);
+      editCallback(pathID, editOptionTitle);
+      toggleEditMode();
     }}>
         <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
         </form> </li>

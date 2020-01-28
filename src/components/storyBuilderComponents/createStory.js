@@ -17,6 +17,7 @@ const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 function reducer(state, action) {
   let newState = {...state}
+  console.log("action: " + action.type);
   switch (action.type) {
     case "add-option" :
       let newOption = {
@@ -43,17 +44,21 @@ function reducer(state, action) {
         text : action.text,
         options : [...state[action.pathID].options],
       };
-      console.log(JSON.stringify(state));
+      console.log(JSON.stringify(newState));
       return newState;
 
     case "change-option-text":
-      for(const path in newState) {
-        for(const option in path.options) {
+      for(var path in newState) {
+        for(let x = 0; x < newState[path].options.length ; x++) {
+          let option = newState[path].options[x]
+          console.log("looking path id: " + action.pathID + "--- current: " + option.pathID)
           if(option.pathID == action.pathID) {
+            console.log("found!");
             option.text = action.text;
           }
         }
       }
+      console.log(JSON.stringify(newState));
       return newState;
     case "add-video" :
       return;

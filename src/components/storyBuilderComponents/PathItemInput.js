@@ -9,8 +9,9 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal, totalNumOfPathItems }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   const [options, setOptions] = useState([])
+  const [counter, setCounter] = useState(0)
   const textAreaBox = useRef("firstRootBox");
   function addScript(src){
     var tag = document.createElement('script');
@@ -23,7 +24,6 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, totalNumOfPathItems 
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
   useEffect(() => {
-
     M.Tooltip.init(".tooltipped");
     addScript(scriptUrl);
     const options = {
@@ -48,8 +48,9 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, totalNumOfPathItems 
     };
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
-    if(totalNumOfPathItems === 1) {
+    if(counter === 0) {
       textAreaBox.current.focus();
+      setCounter((counter) => counter+1)
     }
   });
 

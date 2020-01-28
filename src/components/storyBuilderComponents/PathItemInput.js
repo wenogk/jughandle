@@ -149,7 +149,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
         <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
 
         {options.map((value) => {
-          console.log("OBJECT IS " + JSON.stringify(value));
+        
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>

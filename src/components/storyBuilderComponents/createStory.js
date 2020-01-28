@@ -49,6 +49,9 @@ function reducer(state, action) {
 
     case "change-option-text":
       for(var path in newState) {
+        if(path == action.pathID) {
+          newState[path].title = action.text;
+        }
         for(let x = 0; x < newState[path].options.length ; x++) {
           let option = newState[path].options[x]
           if(option.pathID == action.pathID) {
@@ -56,6 +59,7 @@ function reducer(state, action) {
           }
         }
       }
+
       console.log(JSON.stringify(newState));
       return newState;
     case "add-video" :
@@ -84,7 +88,7 @@ function updatePathItem(idVal, newPathItemObject) {
   }
   newObj[idVal] = newPathItemObject;
   //setPathObject(newObj);
-  console.log(PATHS)
+  //console.log(PATHS)
 }
 var paths = []
 for (let idVal in PATHS) {

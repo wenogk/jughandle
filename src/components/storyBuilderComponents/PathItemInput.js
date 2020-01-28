@@ -50,15 +50,20 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
     var instances = M.Modal.init(elems, options);
   });
 
-  function handleAddOption() {
+  function handleAddOptionStep1() {
     let newID = randomID();
     let newOption = {
+      parentID : pathID,
       pathID : newID,
       text : ""
     }
     let newOptionsArr = [...options, newOption];
     setOptions(newOptionsArr);
-    onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
+  //  onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
+  }
+
+  function handleAddOptionStep2(parentID, pathID, text) {
+    onChanged({type: "add-option", pathID: parentID, newOptionID : pathID, text: text});
   }
 
   function deleteOptionHandler(e,index) {
@@ -125,7 +130,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
          </div>
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
-       <li style={{padding:"5px"}}><a onClick={handleAddOption} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
+       <li style={{padding:"5px"}}><a onClick={handleAddOptionStep1} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
     <li style={{padding:"5px"}}>
@@ -147,7 +152,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem editModeVal={false} title={value.text} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
+        <ListEditableItem editModeVal={false} title={value.text} parentID ={value.parentID} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} />
 
       );
       })}

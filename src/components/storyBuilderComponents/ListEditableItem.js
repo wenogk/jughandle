@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-const ListEditableItem = ({ title, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback }) => {
+const ListEditableItem = ({ title, parentID, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback }) => {
 const [optionTitle, setOptionTitle] = useState(title);
 const [editOptionTitle, setEditOptionTitle] = useState(title);
 const [editMode, setEditMode] = useState(editModeVal);
@@ -25,6 +25,7 @@ return(
       e.preventDefault();
       setOptionTitle(editOptionTitle);
       editCallback(pathID, editOptionTitle)
+      setupCompleteCallback(parentID,pathID,title);
       setSetupMode(false);
     }}>
         <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />

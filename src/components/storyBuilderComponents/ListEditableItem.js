@@ -25,7 +25,7 @@ return(
       e.preventDefault();
       setOptionTitle(editOptionTitle);
       //editCallback(pathID, editOptionTitle)
-      setupCompleteCallback(parentID,pathID,title);
+      setupCompleteCallback(parentID,pathID,editOptionTitle);
       setSetupMode(false);
     }}>
         <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />

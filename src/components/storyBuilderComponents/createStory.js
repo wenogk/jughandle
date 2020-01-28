@@ -34,7 +34,7 @@ function reducer(state, action) {
         text : "",
         options: []
       }
-      console.log(JSON.stringify(state));
+      console.log(JSON.stringify(newState));
       return newState;
     case "delete-option" :
       return;
@@ -53,7 +53,7 @@ function reducer(state, action) {
           let option = newState[path].options[x]
           console.log("looking path id: " + action.pathID + "--- current: " + option.pathID)
           if(option.pathID == action.pathID) {
-            console.log("found!");
+            console.log("found! setting action text to " + action.text);
             option.text = action.text;
           }
         }

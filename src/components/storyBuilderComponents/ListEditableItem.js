@@ -16,7 +16,7 @@ return(
   <li className="collection-item"><div>{optionTitle} <a  className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a onClick ={toggleEditMode} className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
   </React.Fragment>
 );
-} else {
+} else if(setupMode) {
   return(
     <React.Fragment>
     <li className="collection-item">
@@ -25,6 +25,19 @@ return(
       e.preventDefault();
       //editCallback(pathID, editOptionTitle)
       setSetupMode(false);
+    }}>
+        <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+        </form> </li>
+    </React.Fragment>
+  );
+} else if(editMode) {
+  return(
+    <React.Fragment>
+    <li className="collection-item">
+
+    <form onSubmit={e=> {
+      e.preventDefault();
+      //editCallback(pathID, editOptionTitle)
     }}>
         <input type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
         </form> </li>

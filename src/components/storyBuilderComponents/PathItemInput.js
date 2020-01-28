@@ -62,8 +62,8 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
     setOptions(newArr);
   }
 
-  function editOptionHandler(e,index) {
-    //nothing
+  function editOptionHandler(pathID, newTitle) {
+    onChanged({type: "change-option-text", pathID: pathID, newOptionID : newID, text: "option " + newID});
   }
 
   function copyPathIDSuccess() {

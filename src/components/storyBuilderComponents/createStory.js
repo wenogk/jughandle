@@ -51,9 +51,7 @@ function reducer(state, action) {
       for(var path in newState) {
         for(let x = 0; x < newState[path].options.length ; x++) {
           let option = newState[path].options[x]
-          console.log("looking path id: " + action.pathID + "--- current: " + option.pathID)
           if(option.pathID == action.pathID) {
-            console.log("found! setting action text to " + action.text);
             option.text = action.text;
           }
         }

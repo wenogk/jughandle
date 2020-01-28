@@ -23,8 +23,9 @@ function toggleEditMode() {
 }
 if(!editMode && !setupMode) {
 return(
+  //deleteCallback(parentID,pathID)
   <React.Fragment>
-  <li className="collection-item"><div>{optionTitle} <a  className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a onClick ={toggleEditMode} className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
+  <li className="collection-item"><div>{optionTitle} <a  className="secondary-content" ><i  className="material-icons red-text">delete_forever</i></a><a onClick ={toggleEditMode} className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
   </React.Fragment>
 );
 } else if(setupMode) {

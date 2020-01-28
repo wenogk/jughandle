@@ -63,14 +63,16 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   }
 
   function handleAddOptionStep2(parentID, pathID, text) {
-    console.log("add option step 2 text: " + text)
     onChanged({type: "add-option", pathID: parentID, newOptionID : pathID, text: text});
   }
 
-  function deleteOptionHandler(e,index) {
+  function deleteOptionHandler(parentID, pathID) {
+    console.log("delete option handler function")
     let newArr = [...options]
+    let index = newArr.findIndex(x => x.pathID ===pathID);
     newArr.splice(index, 1)
     setOptions(newArr);
+    //onChanged({type: "delete-option", parentID: parentID,  pathID: pathID});
   }
 
   function editOptionHandler(pathID, newTitle) {
@@ -149,7 +151,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
         <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
 
         {options.map((value) => {
-        
+
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>

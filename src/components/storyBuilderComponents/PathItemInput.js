@@ -143,7 +143,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem title={value} pathID={index} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
+        <ListEditableItem editModeVal={false} title={value} pathID={index} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} />
 
       );
       })}

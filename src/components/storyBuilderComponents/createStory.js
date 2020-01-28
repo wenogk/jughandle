@@ -92,7 +92,7 @@ function updatePathItem(idVal, newPathItemObject) {
 }
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} />);
+  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} totalNumOfPathItems ={Object.keys(PATHS).length} />);
 }
   return (
   <React.Fragment>

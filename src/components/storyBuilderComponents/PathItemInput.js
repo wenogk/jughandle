@@ -9,9 +9,9 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal, totalNumOfPathItems }) => {
   const [options, setOptions] = useState([])
-
+  const textAreaBox = useRef("firstRootBox");
   function addScript(src){
     var tag = document.createElement('script');
     tag.async = true;
@@ -48,6 +48,9 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
     };
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
+    if(totalNumOfPathItems === 1) {
+      textAreaBox.current.focus();
+    }
   });
 
   function handleAddOptionStep1() {
@@ -120,12 +123,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
          <span className="card-title" >{title} </span>
          <a data-target="modal1">Modal</a>
            <div className="input-field col s12">
-             <textarea ref={input => {
-               if(pathID=="root") {
-               //input && input.focus()
-                }
-             }
-           }
+             <textarea ref={textAreaBox}
            id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{textVal}</textarea>
              <label for="textarea2">{(pathID =="root") ? "Start path text" : ""}</label>
            </div>

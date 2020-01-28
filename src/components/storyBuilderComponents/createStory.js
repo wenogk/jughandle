@@ -47,7 +47,14 @@ function reducer(state, action) {
       return newState;
 
     case "change-option-text":
-      return;
+      for(const path in newState) {
+        for(const option in path.options) {
+          if(option.pathID == action.pathID) {
+            option.text = action.text;
+          }
+        }
+      }
+      return newState;
     case "add-video" :
       return;
     case "add-image":

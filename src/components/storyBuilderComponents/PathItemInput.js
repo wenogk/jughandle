@@ -63,7 +63,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   }
 
   function editOptionHandler(pathID, newTitle) {
-    onChanged({type: "change-option-text", pathID: pathID, newOptionID : newID, text: "option " + newID});
+    onChanged({type: "change-option-text", pathID: pathID, text: newTitle});
   }
 
   function copyPathIDSuccess() {
@@ -136,8 +136,6 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
 
       <ul className="collection with-header">
         <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
-
-
 
         {options.map((value, index) => {
         return (

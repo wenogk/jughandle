@@ -14,6 +14,10 @@ function addScript(src){
 }
 
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
+function cleanPathState(state) {
+  //takes in the paths state and checks if there are path ids that are not options and then deletes that path if not an option
+  return state;
+}
 
 function reducer(state, action) {
   let newState = {...state}
@@ -37,7 +41,11 @@ function reducer(state, action) {
       console.log(JSON.stringify(newState));
       return newState;
     case "delete-option" :
-      return;
+      let index = newState[action.parentID].options.findIndex(x => x.pathID === action.pathID);
+      newState[action.parentID].options.splice(index, 1)
+      delete newState[action.pathID];
+      console.log(JSON.stringify(newState));
+      return cleanPathState(newState);
     case "change-path-text":
       newState[action.pathID] = {
         title : state[action.pathID].title,

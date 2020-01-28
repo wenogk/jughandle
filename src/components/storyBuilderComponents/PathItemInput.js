@@ -76,7 +76,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
     let index = newArr.findIndex(x => x.pathID ===pathID);
     newArr.splice(index, 1)
     setOptions(newArr);
-    //onChanged({type: "delete-option", parentID: parentID,  pathID: pathID});
+    onChanged({type: "delete-option", parentID: parentID,  pathID: pathID});
   }
 
   function editOptionHandler(pathID, newTitle) {

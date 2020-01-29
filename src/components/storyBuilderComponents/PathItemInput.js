@@ -12,6 +12,7 @@ function randomID () {
 const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
   const [options, setOptions] = useState([])
   const [counter, setCounter] = useState(0)
+  const [pathItemText, setPathItemText] = useState(textVal)
   const textAreaBox = useRef("firstRootBox");
   function addScript(src){
     var tag = document.createElement('script');
@@ -129,7 +130,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
       </div>
     <div className="row">
      <div className="col s12 m12">
-       <div className="card white" style={{height:"auto"}}>
+       <div className={(pathItemText.trim().length>0) ? "card grey lighten-4" : "card yellow lighten-3"} style={{height:"auto"}}>
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
 
@@ -137,7 +138,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
 
            <div className="input-field col s12">
              <textarea ref={textAreaBox}
-           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{textVal}</textarea>
+           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value}); setPathItemText(e.target.value);}}>{textVal}</textarea>
              <label for="textarea2">{(pathID =="root") ? "Start path text" : ""}</label>
            </div>
            <br/>

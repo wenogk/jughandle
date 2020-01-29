@@ -143,9 +143,9 @@ for (let idVal in PATHS) {
 {/*end simple mode */}
 
 <div id="previewMode" className="col s12">
-<p>
+<pre>
 {JSON.stringify(PATHS, null, "\t")}
-</p>
+</pre>
 </div>
 <div id="treeVisMode" className="col s12">Tree visualization mode</div>
 

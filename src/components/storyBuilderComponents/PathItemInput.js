@@ -67,19 +67,30 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
   }
 
   function handleAddOptionStep2(parentID, pathID, text) {
+    let newArr = [...options];
+    let index = newArr.findIndex(x => x.pathID === pathID);
+    newArr[index].text = text;
+    setOptions(newArr);
     onChanged({type: "add-option", pathID: parentID, newOptionID : pathID, text: text});
   }
 
   function deleteOptionHandler(parentID, pathID) {
-    console.log("delete option handler function")
-    let newArr = [...options]
-    let index = newArr.findIndex(x => x.pathID ===pathID);
-    newArr.splice(index, 1)
+    console.log("delete option handler function");
+    let newArr = [...options];
+    let index = newArr.findIndex(x => x.pathID === pathID);
+    //console.log("Deleting: " + JSON.stringify(newArr[index]));
+    newArr.splice(index, 1);
+    console.log("Options before: " + JSON.stringify(options));
     setOptions(newArr);
+    console.log("Options after: " + JSON.stringify(newArr));
     onChanged({type: "delete-option", parentID: parentID,  pathID: pathID});
   }
 
   function editOptionHandler(pathID, newTitle) {
+    let newArr = [...options];
+    let index = newArr.findIndex(x => x.pathID === pathID);
+    newArr[index].text = newTitle;
+    setOptions(newArr);
     onChanged({type: "change-option-text", pathID: pathID, text: newTitle});
   }
 

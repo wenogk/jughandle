@@ -44,6 +44,7 @@ function reducer(state, action) {
       let index = newState[action.parentID].options.findIndex(x => x.pathID === action.pathID);
       newState[action.parentID].options.splice(index, 1)
       delete newState[action.pathID];
+      console.log(JSON.stringify(action));
       console.log(JSON.stringify(newState));
       return cleanPathState(newState);
     case "change-path-text":

@@ -14,8 +14,38 @@ function addScript(src){
 }
 
 const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
+
 function cleanPathState(state) {
+  let memoizationMap = {} //memoization for doesPathIDExistInOptions function
+  function doesPathIDExistInOptions(pathID) {
+      if(memoizationMap[pathID]===true) {
+        return true;
+      } else if(memoizationMap[pathID]===false) {
+        return false;
+      }
+      for(pathID in newState) {
+        for(optionIndex in newState[pathID].options) {
+          if(newState[pathID].options[optionIndex].pathID === pathID) {
+            memoizationMap[pathID] = true;
+            return true;
+          }
+        }
+      }
+      memoizationMap[pathID] = false;
+      return false;
+  }
   //takes in the paths state and checks if there are path ids that are not options and then deletes that path if not an option
+  let newState = {...state}
+  let cleanPaths = true;
+  do {
+    for(pathID in newState) {
+      if(!doesPathIDExistInOptions(pathID)) {
+        delete newState[pathID];
+        cleanPaths = false;
+      }
+    }
+    cleanPaths = true;
+  } while(!cleanPaths);
   return state;
 }
 

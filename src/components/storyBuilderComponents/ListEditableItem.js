@@ -5,7 +5,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 const ListEditableItem = ({ title, parentID, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback }) => {
 const inputBox = useRef("first");
 const inputBox2 = useRef("second");
-const [optionTitle, setOptionTitle] = useState(title);
+const [optionTitle, setOptionTitle] = useState(title); //useless, can be removed
 const [editOptionTitle, setEditOptionTitle] = useState(title);
 const [editMode, setEditMode] = useState(editModeVal);
 const [setupMode, setSetupMode] = useState(true);

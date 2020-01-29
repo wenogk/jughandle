@@ -35,7 +35,7 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      if(editOptionTitle=="") {return}
+      if((editOptionTitle.replace(/\s/g,''))=="") {return}
       setOptionTitle(editOptionTitle);
       //editCallback(pathID, editOptionTitle)
       setupCompleteCallback(parentID,pathID,editOptionTitle);
@@ -52,7 +52,7 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      if(editOptionTitle=="") {return}
+      if((editOptionTitle.replace(/\s/g,''))=="") {return}
       setOptionTitle(editOptionTitle);
       editCallback(pathID, editOptionTitle);
       toggleEditMode();

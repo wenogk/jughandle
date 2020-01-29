@@ -99,9 +99,20 @@ function updatePathItem(idVal, newPathItemObject) {
   //setPathObject(newObj);
   //console.log(PATHS)
 }
+function getParentTitle(pathID) {
+  console.log("get parent title function called")
+  for (let idVal in PATHS) {
+    for(let optionIndex in PATHS[idVal].options) {
+      if(PATHS[idVal].options[optionIndex].pathID === pathID) {
+        console.log("PARENT TITLE IS " + PATHS[idVal].title)
+        return PATHS[idVal].title;
+      }
+    }
+  }
+}
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} />);
+  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} />);
 }
   return (
   <React.Fragment>
@@ -132,7 +143,9 @@ for (let idVal in PATHS) {
 {/*end simple mode */}
 
 <div id="previewMode" className="col s12">
-Preview Mode
+<p>
+{JSON.stringify(PATHS, null, "\t")}
+</p>
 </div>
 <div id="treeVisMode" className="col s12">Tree visualization mode</div>
 

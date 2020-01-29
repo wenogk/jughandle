@@ -9,7 +9,7 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
   const [options, setOptions] = useState([])
   const [counter, setCounter] = useState(0)
   const textAreaBox = useRef("firstRootBox");
@@ -132,8 +132,9 @@ const PathItemInput = ({ title, onChanged, pathID, textVal }) => {
        <div className="card white" style={{height:"auto"}}>
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
-         <span className="card-title" >{title} </span>
-         <a data-target="modal1">Modal</a>
+
+         <span className="card-title" > {title} { (pathID!="root") ? <i class="tiny material-icons">arrow_back</i> : "" } {parentTitle} </span>
+
            <div className="input-field col s12">
              <textarea ref={textAreaBox}
            id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value})}}>{textVal}</textarea>

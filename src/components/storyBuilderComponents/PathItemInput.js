@@ -133,7 +133,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
 
-         <span className="card-title" > {title} { (pathID!="root") ? <i class="tiny material-icons">arrow_back</i> : "" } {parentTitle} </span>
+         <span className="card-title" > {title} { (pathID!="root") ? <i class="tiny material-icons">adjust</i> : "" } {parentTitle} </span>
 
            <div className="input-field col s12">
              <textarea ref={textAreaBox}

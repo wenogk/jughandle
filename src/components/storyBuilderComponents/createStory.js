@@ -23,8 +23,8 @@ function cleanPathState(state) {
       } else if(memoizationMap[pathID]===false) {
         return false;
       }
-      for(pathID in newState) {
-        for(optionIndex in newState[pathID].options) {
+      for(let pathID in newState) {
+        for(let optionIndex in newState[pathID].options) {
           if(newState[pathID].options[optionIndex].pathID === pathID) {
             memoizationMap[pathID] = true;
             return true;
@@ -38,7 +38,7 @@ function cleanPathState(state) {
   let newState = {...state}
   let cleanPaths = true;
   do {
-    for(pathID in newState) {
+    for(let pathID in newState) {
       if(!doesPathIDExistInOptions(pathID)) {
         delete newState[pathID];
         cleanPaths = false;

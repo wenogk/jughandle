@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
-import About from './components/About';
+import Home from './components/Home/Home';
+import About from './components/About/About';
 import CreateStory from './components/storyBuilderComponents/CreateStory';
 function App() {
   return (

@@ -62,11 +62,13 @@ function reducer(state, action) {
         title : state[action.pathID].title,
         text : state[action.pathID].text,
         options : [...state[action.pathID].options, newOption],
+        video : state[action.pathID].video
       };
       newState[action.newOptionID] = {
         title : action.text,
         text : "",
         options: []
+
       }
       console.log(JSON.stringify(newState));
       return newState;
@@ -81,6 +83,7 @@ function reducer(state, action) {
       newState[action.pathID] = {
         title : state[action.pathID].title,
         text : action.text,
+        video : state[action.pathID].video,
         options : [...state[action.pathID].options],
       };
       console.log(JSON.stringify(newState));
@@ -102,7 +105,28 @@ function reducer(state, action) {
       console.log(JSON.stringify(newState));
       return newState;
     case "add-video" :
-      return;
+      newState[action.pathID] = {
+        title : state[action.pathID].title,
+        text : state[action.pathID].text,
+        video : action.url,
+        options : [...state[action.pathID].options],
+      };
+      return newState;
+    case "edit-video":
+      newState[action.pathID] = {
+        title : state[action.pathID].title,
+        text : state[action.pathID].text,
+        video : action.url,
+        options : [...state[action.pathID].options],
+      };
+      return newState;
+    case "delete-video":
+      newState[action.pathID] = {
+        title : state[action.pathID].title,
+        text : state[action.pathID].text,
+        options : [...state[action.pathID].options],
+      };
+      return newState;
     case "add-image":
       return;
     default:

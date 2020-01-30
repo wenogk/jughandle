@@ -10,10 +10,11 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault, defaultVideoURL }) => {
   const [options, setOptions] = useState([])
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)
+  const [pathItemVideoURL, setPathItemVideoURL] = useState(defaultVideoURL)
   const [hasVideo, setHasVideo] = useState(hasVideoDefault)
   const textAreaBox = useRef("firstRootBox");
   function addScript(src){
@@ -62,15 +63,20 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
     setHasVideo(true);
   }
   function handleAddVideoStep2(pathID, mediaURL) {
-    alert("added: " + mediaURL)
+    //alert("added: " + mediaURL)
+    setPathItemVideoURL(mediaURL)
+    onChanged({type: "add-video", pathID: pathID, url : mediaURL});
   }
 
   function editVideoHandler(pathID, mediaURL) {
-    alert("edited: " + mediaURL)
+    //alert("edited: " + mediaURL)
+    setPathItemVideoURL(mediaURL)
+    onChanged({type: "edit-video", pathID: pathID, url : mediaURL});
   }
   function deleteVideoHandler(pathID) {
-    alert("delete video in pathID: " + pathID)
+  //  alert("delete video in pathID: " + pathID)
     setHasVideo(false);
+    onChanged({type: "delete-video", pathID: pathID});
   }
 
   function handleAddOptionStep1() {
@@ -156,7 +162,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
          {(hasVideo) ? (
            <ul className="collection with-header ">
 
-              <MediaEditableItem editModeVal={false} pathID="root" deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Copy paste the vimeo video url" />
+              <MediaEditableItem editModeVal={false} pathID="root" deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Paste the vimeo video link here!" mediaURL={pathItemVideoURL} />
 
 
              </ul>

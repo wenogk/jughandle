@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ListEditableItem from './ListEditableItem'
+import MediaEditableItem from './MediaEditableItem'
 function randomID () {
   //check if duplicate id
   function randomIntFromInterval(min, max) { // min and max included
@@ -9,10 +10,11 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault }) => {
   const [options, setOptions] = useState([])
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)
+  const [hasVideo, setHasVideo] = useState(hasVideoDefault)
   const textAreaBox = useRef("firstRootBox");
   function addScript(src){
     var tag = document.createElement('script');
@@ -54,7 +56,14 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
       setCounter((counter) => counter+1)
     }
   });
+  function handleAddVideoStep1() {
+    if(hasVideo){ return;}
+    setHasVideo(true);
+    //setOptions(newOptionsArr);
+  }
+  function handleAddVideoStep2(pathID, videoURL) {
 
+  }
   function handleAddOptionStep1() {
     let newID = randomID();
     let newOption = {
@@ -135,13 +144,15 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
 
          <span className="card-title" > {title} { (pathID!="root") ? <i class="tiny material-icons">adjust</i> : "" } {parentTitle} </span>
+         {(hasVideo) ? (
+           <ul className="collection with-header ">
 
-         <ul className="collection with-header ">
-
-            <ListEditableItem editModeVal={false} title="test" parentID ="lkk" pathID="root" deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} setupLabelText="Copy paste the vimeo video url" />
+              <MediaEditableItem editModeVal={false} title="" parentID ="lkk" pathID="root" deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Copy paste the vimeo video url" />
 
 
-           </ul>
+             </ul>
+         ) : ""}
+
 
            <div className="input-field col s12">
              <textarea ref={textAreaBox}
@@ -153,7 +164,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
         <div className="center-align" style={{padding:"10px"}}>
          <ul className="list-inline">
        <li style={{padding:"5px"}}><a onClick={handleAddOptionStep1} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
-    <li style={{padding:"5px"}}><a className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
+    <li style={{padding:"5px"}}><a onClick={handleAddVideoStep1} className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
     <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
     <li style={{padding:"5px"}}>
     <CopyToClipboard text={pathID /* option id val here! */}

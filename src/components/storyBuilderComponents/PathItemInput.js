@@ -56,14 +56,23 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
       setCounter((counter) => counter+1)
     }
   });
+
   function handleAddVideoStep1() {
     if(hasVideo){ return;}
     setHasVideo(true);
-    //setOptions(newOptionsArr);
   }
-  function handleAddVideoStep2(pathID, videoURL) {
+  function handleAddVideoStep2(pathID, mediaURL) {
+    alert("added: " + mediaURL)
+  }
 
+  function editVideoHandler(pathID, mediaURL) {
+    alert("edited: " + mediaURL)
   }
+  function deleteVideoHandler(pathID) {
+    alert("delete video in pathID: " + pathID)
+    setHasVideo(false);
+  }
+
   function handleAddOptionStep1() {
     let newID = randomID();
     let newOption = {
@@ -147,7 +156,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
          {(hasVideo) ? (
            <ul className="collection with-header ">
 
-              <MediaEditableItem editModeVal={false} title="" parentID ="lkk" pathID="root" deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Copy paste the vimeo video url" />
+              <MediaEditableItem editModeVal={false} pathID="root" deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Copy paste the vimeo video url" />
 
 
              </ul>

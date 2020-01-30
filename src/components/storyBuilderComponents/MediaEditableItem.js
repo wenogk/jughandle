@@ -37,7 +37,8 @@ if(!editMode && !setupMode) {
 return(
   //
   <React.Fragment>
-  <li className="collection-item"><div>{mediaURL} <a onClick={() => {deleteCallback(pathID)}}  className="secondary-content" ><i  className="material-icons red-text">delete_forever</i></a><a onClick ={toggleEditMode} className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
+
+  <li className="collection-item black"><div style={{color:"#ffffff"}}><i className="tiny material-icons white-text">play_circle_outline</i> {mediaURL} <a onClick={() => {deleteCallback(pathID)}}  className="secondary-content" ><i  className="material-icons red-text">delete_forever</i></a><a onClick ={toggleEditMode} className="secondary-content"><i className="material-icons white-text">edit</i></a></div></li>
   </React.Fragment>
 );
 } else if(setupMode) {

@@ -68,6 +68,7 @@ useEffect(() => {
       </div>
 
     </div>
+    
     <Footer />
     </React.Fragment>
   );

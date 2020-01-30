@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-const ListEditableItem = ({ title, parentID, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback }) => {
+const ListEditableItem = ({ title, parentID, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback, setupLabelText, editLabelText }) => {
 const inputBox = useRef("first");
 const inputBox2 = useRef("second");
 const [optionTitle, setOptionTitle] = useState(title); //useless, can be removed
@@ -41,7 +41,10 @@ return(
       setupCompleteCallback(parentID,pathID,editOptionTitle);
       setSetupMode(false);
     }}>
-        <input ref={inputBox} type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+    <div className="input-field">
+        <input id="ListEditableItemInputEdit" ref={inputBox} type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+         <label for="ListEditableItemInputEdit">{setupLabelText}</label>
+         </div>
         </form> </li>
     </React.Fragment>
   );
@@ -57,7 +60,10 @@ return(
       editCallback(pathID, editOptionTitle);
       toggleEditMode();
     }}>
+    <div className="input-field">
         <input ref={inputBox2} type="text" value={editOptionTitle} onChange={ e => {setEditOptionTitle(e.target.value)}} />
+        <label for="ListEditableItemInputEdit">{editLabelText}</label>
+    </div>
         </form> </li>
     </React.Fragment>
   );

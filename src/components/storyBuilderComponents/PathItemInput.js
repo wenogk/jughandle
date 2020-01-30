@@ -136,6 +136,13 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
 
          <span className="card-title" > {title} { (pathID!="root") ? <i class="tiny material-icons">adjust</i> : "" } {parentTitle} </span>
 
+         <ul className="collection with-header ">
+
+            <ListEditableItem editModeVal={false} title="test" parentID ="lkk" pathID="root" deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} setupLabelText="Copy paste the vimeo video url" />
+
+
+           </ul>
+
            <div className="input-field col s12">
              <textarea ref={textAreaBox}
            id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value}); setPathItemText(e.target.value);}}>{textVal}</textarea>
@@ -157,6 +164,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
     </li>
        </ul>
       </div>
+
       { (options.length>0) &&
 
       <ul className="collection with-header">
@@ -167,7 +175,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle }) => {
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem editModeVal={false} title={value.text} parentID ={value.parentID} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} />
+        <ListEditableItem editModeVal={false} title={value.text} parentID ={value.parentID} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} setupLabelText="Type the option text and hit enter!" editLabelText="Edit the text and hit enter!" />
 
       );
       })}

@@ -2,6 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+function validURL(str) { /// from https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+
 const ListEditableItem = ({ mediaURL, pathID, editModeVal, deleteOnFirstCancel, deleteCallback, editCallback, setupCompleteCallback, setupLabelText, editLabelText }) => {
 const inputBox = useRef("first");
 const inputBox2 = useRef("second");
@@ -37,7 +47,8 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      if((editMediaURL.replace(/\s/g,''))=="") {return}
+      if((editMediaURL.replace(/\s/g,''))=="" || !validURL(editMediaURL)) {return}
+
       //editCallback(pathID, editMediaURL)
       setupCompleteCallback(pathID,editMediaURL);
       setSetupMode(false);
@@ -56,7 +67,7 @@ return(
 
     <form onSubmit={e=> {
       e.preventDefault();
-      if((editMediaURL.replace(/\s/g,''))=="") {return}
+      if((editMediaURL.replace(/\s/g,''))=="" || !validURL(editMediaURL)) {return}
       editCallback(pathID, editMediaURL);
       toggleEditMode();
     }}>

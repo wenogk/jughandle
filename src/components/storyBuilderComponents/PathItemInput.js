@@ -162,7 +162,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
          {(hasVideo) ? (
            <ul className="collection with-header ">
 
-              <MediaEditableItem editModeVal={false} pathID="root" deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Paste the vimeo video link here!" mediaURL={pathItemVideoURL} />
+              <MediaEditableItem editModeVal={false} pathID="root" deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Paste the vimeo video link here!" editLabelText="Edit the url and hit enter!" mediaURL={pathItemVideoURL} />
 
 
              </ul>

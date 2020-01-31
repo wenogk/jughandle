@@ -2,6 +2,7 @@ import React, { useReducer, useState, useEffect } from 'react'
 import Navbar2 from '../Navbar2'
 import Footer from '../Footer'
 import PathItemInput from './PathItemInput'
+import TreeView from './TreeView'
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
@@ -201,7 +202,9 @@ for (let idVal in PATHS) {
 {JSON.stringify(PATHS, null, "\t")}
 </pre>
 </div>
-<div id="treeVisMode" className="col s12">Tree visualization mode</div>
+<div id="treeVisMode" className="col s12">
+<TreeView />
+</div>
 
   <Footer />
 

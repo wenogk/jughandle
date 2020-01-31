@@ -1,21 +1,32 @@
 import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
+let divStyle = {
+  color: 'black',
+  padding: '5px',
+  display: 'inline-block',
+  border: '5px solid black'
+};
 
 const TreeView = (pathArg) => {
   let paths = pathArg.paths
   function getTreeCode(searchID) {
     if(paths[searchID].options.length==0) {
-      return <TreeNode label={paths[searchID].title} />;
+      let atr = <div style={divStyle}>{paths[searchID].title}</div>;
+      return <TreeNode label={atr} />;
     }
     else {
+      let atr = <div style={divStyle}>{paths[searchID].title}</div>;
       return (
-        <TreeNode label={paths[searchID].title} >
+        <TreeNode  label={atr} >
           {
-            paths[searchID].options.map((option, index) => (
-              <TreeNode label={option.title}>
-              {(getTreeCode(option.pathID))}
-              </TreeNode>
-            ))
+            paths[searchID].options.map((option, index) => {
+              let atr = <div style={divStyle}>{option.title}</div>;
+              return(
+                <TreeNode label={atr}>
+                {(getTreeCode(option.pathID))}
+                </TreeNode>
+              );
+            })
           }
         </TreeNode>
       );
@@ -26,7 +37,10 @@ const TreeView = (pathArg) => {
 
   return (
       <React.Fragment>
-        <Tree>
+        <Tree
+        lineWidth={"10px"}
+        lineColor={"blue"}
+        >
           {getTreeCode("root")}
         </Tree>
       </React.Fragment>

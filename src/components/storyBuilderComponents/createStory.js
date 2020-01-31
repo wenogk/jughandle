@@ -203,7 +203,7 @@ for (let idVal in PATHS) {
 </pre>
 </div>
 <div id="treeVisMode" className="col s12">
-<TreeView />
+<TreeView paths = {PATHS} />
 </div>
 
   <Footer />

@@ -31,7 +31,6 @@ const TreeView = (pathArg) => {
         <TreeNode label={getLabelCode(option.text)} />
       )
     }
-
   }
 
   function getTreeCode(searchID, prevSearchID = "") {
@@ -46,7 +45,7 @@ const TreeView = (pathArg) => {
                   paths[searchID].options.map((option, index) => (
                     <React.Fragment>
                       {getOptionsCode(option)}
-                      </React.Fragment>
+                    </React.Fragment>
                   ))
                 }
               </React.Fragment>

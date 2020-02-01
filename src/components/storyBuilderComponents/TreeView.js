@@ -9,24 +9,23 @@ let divStyle = {
 let obj = {}
 const TreeView = (pathArg) => {
   let paths = pathArg.paths
+  function getLabelCode(text) {
+    return <div style={divStyle}>{text}</div>;
+  }
   function getTreeCode(searchID) {
     if(paths[searchID].options.length==0) {
       let atr = <div style={divStyle}>{paths[searchID].title}</div>;
       return <TreeNode label={atr} />;
     }
-    else {
+    else  {
       let atr = <div style={divStyle}>{paths[searchID].title}</div>;
       return (
-        <TreeNode  label={atr} >
-          {
-            paths[searchID].options.map((option, index) => {
-              let atr = <div style={divStyle}>{option.text}</div>;
-              return(
-                <TreeNode label={atr}>
-                {(getTreeCode(option.pathID))}
-                </TreeNode>
-              );
-            })
+        <TreeNode label={atr} >
+            {paths[searchID].options.map((option, index) => (
+              <TreeNode label={getLabelCode(option.text)}>
+              {(getTreeCode(option.pathID))}
+              </TreeNode>
+            ))
           }
         </TreeNode>
       );

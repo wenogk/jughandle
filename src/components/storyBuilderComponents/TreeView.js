@@ -6,7 +6,7 @@ let divStyle = {
   display: 'inline-block',
   border: '5px solid black'
 };
-
+let obj = {}
 const TreeView = (pathArg) => {
   let paths = pathArg.paths
   function getTreeCode(searchID) {

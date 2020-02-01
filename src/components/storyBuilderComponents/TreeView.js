@@ -20,7 +20,7 @@ const TreeView = (pathArg) => {
         <TreeNode  label={atr} >
           {
             paths[searchID].options.map((option, index) => {
-              let atr = <div style={divStyle}>{option.title}</div>;
+              let atr = <div style={divStyle}>{option.text}</div>;
               return(
                 <TreeNode label={atr}>
                 {(getTreeCode(option.pathID))}
@@ -40,6 +40,7 @@ const TreeView = (pathArg) => {
         <Tree
         lineWidth={"10px"}
         lineColor={"blue"}
+        label = {paths["root"].title}
         >
           {getTreeCode("root")}
         </Tree>

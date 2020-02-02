@@ -155,7 +155,7 @@ function updatePathItem(idVal, newPathItemObject) {
   //console.log(PATHS)
 }
 function getParentTitle(pathID) {
-  console.log("get parent title function called")
+//console.log("get parent title function called")
   for (let idVal in PATHS) {
     for(let optionIndex in PATHS[idVal].options) {
       if(PATHS[idVal].options[optionIndex].pathID === pathID) {
@@ -203,7 +203,7 @@ for (let idVal in PATHS) {
 </pre>
 </div>
 <div id="treeVisMode" className="col s12">
-<TreeView paths = {PATHS} />
+<TreeView paths = {PATHS} callback={dispatch} />
 </div>
 
   <Footer />

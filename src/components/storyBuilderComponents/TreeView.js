@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
-import Modal from "reactjs-popup";
+import Popup from "reactjs-popup";
 import PathItemInput from './PathItemInput'
 import {useSelector, useDispatch} from 'react-redux';
 let obj = {}
@@ -31,9 +31,23 @@ const TreeView = () => {
       border: '5px solid #311b92'
     };
     return (
-      <Modal modal trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>}>
+
+      <Popup trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>} modal>
+      {close => (
+      <div className="modal2">
+        <a className="close" onClick={close}>
+        <i class="tiny material-icons" >close</i>
+        </a>
+
+        <div className="content">
         <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />
-      </Modal>
+        </div>
+
+        </div>
+
+
+    ) }
+    </Popup>
     )
   }
 

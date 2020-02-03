@@ -32,7 +32,7 @@ const TreeView = () => {
     };
     return (
       <Modal modal trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>}>
-        <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={false} defaultVideoURL={PATHS[idVal].video} />
+        <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />
       </Modal>
     )
   }

@@ -35,7 +35,7 @@ function getParentTitle(pathID) {
 }
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={false} defaultVideoURL={PATHS[idVal].video} />);
+  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />);
 }
   return (
   <React.Fragment>

@@ -113,29 +113,29 @@ a:hover {
   cursor:pointer;
 }
 
-.modal {
+.modal2 {
   font-size: 12px;
+  background: white;
+  width: 100%;
 }
-.modal > .header {
+.modal2 > .header {
   width: 100%;
   border-bottom: 1px solid gray;
   font-size: 18px;
   text-align: center;
-  padding: 5px;
+  padding: 0px;
 }
-.modal > .content {
+.modal2 > .content {
   width: 100%;
-  padding: 10px 5px;
+  padding-top: 10px;
 }
-.modal > .actions {
+.modal2 > .actions {
+  width: 100%;
+  padding: 0px;
   margin: auto;
-}
-.modal > .actions {
-  width: 100%;
-  padding: 10px 5px;
   text-align: center;
 }
-.modal > .close {
+.modal2 > .close {
   cursor: pointer;
   position: absolute;
   display: block;

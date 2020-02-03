@@ -2,10 +2,12 @@ import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
 import Modal from "reactjs-popup";
 import PathItemInput from './PathItemInput'
+import {useSelector, useDispatch} from 'react-redux';
 let obj = {}
-const TreeView = (pathArg, callback) => {
-  let paths = pathArg.paths
-  let PATHS = paths;
+const TreeView = () => {
+
+  const dispatch = useDispatch();
+  const PATHS = useSelector((state) => {return(state)});
 
   function getParentTitle(pathID) {
   //console.log("get parent title function called")
@@ -30,13 +32,13 @@ const TreeView = (pathArg, callback) => {
     };
     return (
       <Modal modal trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>}>
-        <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={paths[idVal].text} onChanged={callback} parentTitle={getParentTitle(idVal)} defaultOptions={paths[idVal].options}  hasVideoDefault={false} />
+        <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={false} defaultVideoURL={PATHS[idVal].video} />
       </Modal>
     )
   }
 
   function hasChildren(id) {
-    return (paths[id].options.length > 0)
+    return (PATHS[id].options.length > 0)
   }
 
   function getOptionsCode(option) {
@@ -56,13 +58,13 @@ const TreeView = (pathArg, callback) => {
   function getTreeCode(searchID, prevSearchID = "") {
     if(prevSearchID==searchID) {
       return;
-    } else if(paths[searchID].options.length==0 && searchID!="root") {
-      return <TreeNode label={getLabelCode(paths[searchID].title,searchID)} />;
+    } else if(PATHS[searchID].options.length==0 && searchID!="root") {
+      return <TreeNode label={getLabelCode(PATHS[searchID].title,searchID)} />;
     } else  {
           return (
             <React.Fragment>
                 {
-                  paths[searchID].options.map((option, index) => (
+                  PATHS[searchID].options.map((option, index) => (
                     <React.Fragment>
                       {getOptionsCode(option)}
                     </React.Fragment>
@@ -80,7 +82,7 @@ const TreeView = (pathArg, callback) => {
         <Tree
         lineWidth={"5px"}
         lineColor={"black"}
-        label = {getLabelCode(paths["root"].title,"root")}
+        label = {getLabelCode(PATHS["root"].title,"root")}
         >
           {getTreeCode("root")}
         </Tree>

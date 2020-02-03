@@ -10,7 +10,7 @@ function randomID () {
   }
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
-const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault, defaultVideoURL, defaultOptions=[] }) => {
+const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault, defaultVideoURL, defaultOptions=[]}) => {
   const [options, setOptions] = useState(defaultOptions)
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)

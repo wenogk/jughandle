@@ -8,8 +8,10 @@ const inputBox2 = useRef("second");
 const [optionTitle, setOptionTitle] = useState(title); //useless, can be removed
 const [editOptionTitle, setEditOptionTitle] = useState(title);
 const [editMode, setEditMode] = useState(editModeVal);
-const [setupMode, setSetupMode] = useState(true);
-const [counter, setCounter] = useState(0)
+let isSetupMode = (title=="") ? true : false;
+const [setupMode, setSetupMode] = useState(isSetupMode);
+let defaultCounter = (isSetupMode) ? 0 : 1;
+const [counter, setCounter] = useState(defaultCounter)
 useEffect(() => {
   if(counter === 0) {
   if(setupMode) {

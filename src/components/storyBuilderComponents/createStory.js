@@ -35,7 +35,7 @@ function getParentTitle(pathID) {
 }
 var paths = []
 for (let idVal in PATHS) {
-  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={false} />);
+  paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={false} defaultVideoURL={PATHS[idVal].video} />);
 }
   return (
   <React.Fragment>
@@ -71,7 +71,7 @@ for (let idVal in PATHS) {
 </pre>
 </div>
 <div id="treeVisMode" className="col s12">
-<TreeView paths = {PATHS} callback={dispatch} />
+<TreeView />
 </div>
 
   <Footer />

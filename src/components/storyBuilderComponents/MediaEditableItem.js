@@ -17,8 +17,11 @@ const inputBox = useRef("first");
 const inputBox2 = useRef("second");
 const [editMediaURL, seteditMediaURL] = useState(mediaURL);
 const [editMode, setEditMode] = useState(editModeVal);
-const [setupMode, setSetupMode] = useState(true);
-const [counter, setCounter] = useState(0)
+let isSetupMode = (mediaURL == "") ? true : false;
+console.log("editMediaURL val : " +editMediaURL)
+const [setupMode, setSetupMode] = useState(isSetupMode);
+let defaultCounter = (isSetupMode) ? 0 : 1;
+const [counter, setCounter] = useState(defaultCounter)
 useEffect(() => {
 
   if(setupMode) {

@@ -2,7 +2,8 @@ let initialState = {
   "root" : {
     title: "Start Root Path",
     text: "",
-    options: []
+    options: [],
+    video: ""
   }
 }
 
@@ -24,8 +25,8 @@ let initialState = {
       newState[action.newOptionID] = {
         title : action.text,
         text : "",
-        options: []
-
+        options: [],
+        video: ""
       }
       console.log(JSON.stringify(newState));
       return newState;

@@ -6,6 +6,7 @@ let obj = {}
 const TreeView = (pathArg, callback) => {
   let paths = pathArg.paths
   let PATHS = paths;
+
   function getParentTitle(pathID) {
   //console.log("get parent title function called")
 
@@ -18,7 +19,9 @@ const TreeView = (pathArg, callback) => {
       }
     }
   }
+
   function getLabelCode(text,idVal) {
+
     let divStyle = {
       color: '#311b92',
       padding: '5px',
@@ -26,11 +29,9 @@ const TreeView = (pathArg, callback) => {
       border: '5px solid #311b92'
     };
     return (
-
       <Modal modal trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>}>
         <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={paths[idVal].text} onChanged={callback} parentTitle={getParentTitle(idVal)} defaultOptions={paths[idVal].options}  hasVideoDefault={false} />
       </Modal>
-
     )
   }
 

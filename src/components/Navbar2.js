@@ -24,10 +24,11 @@ function Navbar2() {
       </div>
       <div class="nav-content ">
       <ul className="tabs tabs-transparent">
+      <li className="tab col s3 " style={{width:"33.3%"}}><a className="active" href="#treeVisMode">Tree builder</a></li>
 
-        <li className="tab col s3" style={{width:"33.3%"}}><a className="active" href="#storyMode">Story Path Builder</a></li>
-        <li className="tab col s3" style={{width:"33.3%"}}><a  href="#previewMode">Preview</a></li>
-        <li className="tab col s3 " style={{width:"33.3%"}}><a href="#treeVisMode">Tree visualization</a></li>
+      <li className="tab col s3" style={{width:"33.3%"}}><a  href="#previewMode">Preview</a></li>
+
+        <li className="tab col s3" style={{width:"33.3%"}}><a href="#storyMode">Simple Builder</a></li>
 
       </ul>
       </div>

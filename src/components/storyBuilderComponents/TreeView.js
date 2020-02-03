@@ -23,18 +23,40 @@ const TreeView = () => {
   }
 
   function getLabelCode(text,idVal) {
-
+    let borderStyle = "5px solid #1a237e";
+    if(idVal==="root") {
+      borderStyle = "5px solid #b71c1c"
+    } else if(PATHS[idVal].options.length==0) {
+      borderStyle = "5px solid #1b5e20"
+    }
+    let isRootAndEmpty = (idVal=="root" && PATHS[idVal].options.length==0);
     let divStyle = {
-      color: '#311b92',
-      padding: '5px',
+      color: "white",
+      padding: '15px',
       display: 'inline-block',
-      border: '5px solid #311b92'
+      border: borderStyle,
+      background: "black",
+      borderRadius: "25px",
     };
+    let divStyle2 = {
+      color: "white",
+      padding: '15px',
+      display: 'inline-block',
+      border: borderStyle,
+      background: "black",
+      borderRadius: "25px",
+      fontSize: "2vw",
+      top:"30px",
+    };
+    let triggerCode = <div  className={ (isRootAndEmpty) ? "hoverPointer pulse" :"hoverPointer"} style={divStyle}>{text}</div>;
+    if(isRootAndEmpty) {
+      triggerCode = <div className = "hoverPointer pulse" style={divStyle2}>{text}</div>
+    }
     return (
 
-      <Popup trigger={  <div className="hoverPointer" style={divStyle}>{text}</div>} modal>
+      <Popup trigger={ triggerCode } modal>
       {close => (
-      <div className="modal2">
+      <div className="modal2" style={{maxHeight:"65vh",overflow:"auto"}}>
         <a className="close" onClick={close}>
         <i class="tiny material-icons" >close</i>
         </a>
@@ -95,7 +117,7 @@ const TreeView = () => {
       <React.Fragment>
         <Tree
         lineWidth={"5px"}
-        lineColor={"black"}
+        lineColor={(PATHS["root"].options.length > 0) ? "black" : "rgba(255, 0, 0, 0)"}
         label = {getLabelCode(PATHS["root"].title,"root")}
         >
           {getTreeCode("root")}

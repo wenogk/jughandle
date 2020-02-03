@@ -70,7 +70,7 @@ for (let idVal in PATHS) {
 {JSON.stringify(PATHS, null, "\t")}
 </pre>
 </div>
-<div id="treeVisMode" className="col s12">
+<div id="treeVisMode" className="col s12" style={{overflow:"auto", minHeight: "100vh"}}>
 <TreeView />
 </div>
 

@@ -14,6 +14,7 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
   const [options, setOptions] = useState(defaultOptions)
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)
+  const [prevPathItemText, setPrevPathItemText] = useState(textVal)
   const [pathItemVideoURL, setPathItemVideoURL] = useState(defaultVideoURL)
   const [hasVideo, setHasVideo] = useState(hasVideoDefault)
   const textAreaBox = useRef("firstRootBox");
@@ -171,7 +172,16 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
 
            <div className="input-field col s12">
              <textarea ref={textAreaBox}
-           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {onChanged({type: "change-path-text", pathID: pathID, text: e.target.value}); setPathItemText(e.target.value);}}>{textVal}</textarea>
+           id="textarea2" className="materialize-textarea" data-length="120" onChange={e=> {
+             if(pathItemText!=textVal) {
+               setPathItemText(textVal);
+               console.log("NOT EQUAL")
+             }
+                 onChanged({type: "change-path-text", pathID: pathID, text: e.target.value});
+                 setPrevPathItemText(pathItemText);
+                 setPathItemText(e.target.value);
+           }
+           }>{pathItemText}</textarea>
              <label for="textarea2">{(pathID =="root") ? "Start path text" : ""}</label>
            </div>
            <br/>

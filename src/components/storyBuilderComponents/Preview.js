@@ -16,12 +16,16 @@ const Preview = () => {
     let option = PATHS[currentPathID].options[i];
     options.push(<a onClick={() => {loadPath(option.pathID)}}>{option.text}</a>)
   }
-  options.push(<a onClick={() => {loadPath(previousPathID)}}>Previous Path</a>);
-  options.push(<a onClick={() => {loadPath("root")}}>Start Over</a>);
+  if(currentPathID!="root") {
+    options.push(<a onClick={() => {loadPath(previousPathID)}}>Previous Path</a>);
+    options.push(<a onClick={() => {loadPath("root")}}>Start Over</a>);
+  }
+
 
   return (
     <React.Fragment>
-    <div class="row">
+    <div className="container">
+    <div class="row ">
     <div class="col s12 m12">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
@@ -32,6 +36,7 @@ const Preview = () => {
         </div>
       </div>
     </div>
+  </div>
   </div>
     </React.Fragment>
   );

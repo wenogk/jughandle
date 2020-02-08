@@ -3,6 +3,7 @@ import Navbar from '../Navbar'
 import Footer from '../Footer'
 import { Link } from "react-router-dom";
 import M from "materialize-css";
+import Typist from 'react-typist';
 
 function Home() {
 
@@ -17,9 +18,9 @@ useEffect(() => {
     <div className="section no-pad-bot" id="index-banner">
 
       <br /><br />
-      <div className="typewriter">
+      <Typist avgTypingDelay={40} cursor={{ hideWhenDone: true }}>
       <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
-      </div>
+
       <h1 className="header center hide-on-med-and-up" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
       <div className="container">
         <div className="row center">
@@ -28,9 +29,11 @@ useEffect(() => {
         <div className="row center">
         <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</Link>
         </div>
+
         <br /><br />
 
       </div>
+      </Typist>
     </div>
 
 
@@ -68,7 +71,7 @@ useEffect(() => {
       </div>
 
     </div>
-    
+
     <Footer />
     </React.Fragment>
   );

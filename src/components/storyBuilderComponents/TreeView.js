@@ -1,23 +1,16 @@
 import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
-import Popup from "reactjs-popup";
 import PopPop from 'react-poppop';
-import PathItemInput from './PathItemInput'
 import TreeViewModal from './TreeViewModal'
-import {useSelector, useDispatch} from 'react-redux';
-let obj = {}
+import {useSelector} from 'react-redux';
 const TreeView = () => {
 
-  const dispatch = useDispatch();
   const PATHS = useSelector((state) => {return(state)});
 
   function getParentTitle(pathID) {
-  //console.log("get parent title function called")
-
     for (let idVal in PATHS) {
       for(let optionIndex in PATHS[idVal].options) {
         if(PATHS[idVal].options[optionIndex].pathID === pathID) {
-          console.log("PARENT TITLE IS " + PATHS[idVal].title)
           return PATHS[idVal].title;
         }
       }

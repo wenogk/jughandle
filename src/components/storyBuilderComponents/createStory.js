@@ -3,6 +3,7 @@ import Navbar2 from '../Navbar2'
 import Footer from '../Footer'
 import PathItemInput from './PathItemInput'
 import TreeView from './TreeView'
+import Preview from './Preview'
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import {useSelector, useDispatch} from 'react-redux';
@@ -66,6 +67,7 @@ for (let idVal in PATHS) {
 {/*end simple mode */}
 
 <div id="previewMode" className="col s12">
+<Preview />
 <pre>
 {JSON.stringify(PATHS, null, "\t")}
 </pre>

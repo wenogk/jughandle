@@ -1,6 +1,5 @@
 import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
-import PopPop from 'react-poppop';
 import TreeViewModal from './TreeViewModal'
 import {useSelector} from 'react-redux';
 const TreeView = () => {
@@ -18,9 +17,7 @@ const TreeView = () => {
   }
 
   function getLabelCode(text,id) {
-    return (
-      <TreeViewModal text={text} idVal={id} />
-    )
+    return (<TreeViewModal text={text} idVal={id} />);
   }
 
   function hasChildren(id) {

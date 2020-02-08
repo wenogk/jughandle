@@ -15,12 +15,12 @@ const TreeViewModal = ({text, idVal}) => {
     borderStyle = "5px solid #1b5e20"
   }
   const [divStyle, setDivStyle] = useState({
-    color: "white",
+    color: "black",
     userSelect: "none",
     padding: '15px',
     display: 'inline-block',
     border: borderStyle,
-    background: "black",
+    background: "white",
     borderRadius: "25px",
   });
   const [divStyle2, setDivStyle2] = useState({
@@ -31,9 +31,9 @@ const TreeViewModal = ({text, idVal}) => {
     border: borderStyle,
     background: "black",
     borderRadius: "25px",
-    fontSize: "24px",
-    top:"30px",
+    fontSize: "24px"
   });
+
   console.log("PATHS modal: " + JSON.stringify(PATHS))
   console.log("idVal modal : " + JSON.stringify(idVal))
 
@@ -54,19 +54,26 @@ const TreeViewModal = ({text, idVal}) => {
   function hover(isEntering) {
     setIsHover(isEntering);
     if(isEntering) {
-      setDivStyle({...divStyle, background: "#282828"})
-      setDivStyle2({...divStyle2, background: "#282828"})
+      setDivStyle({...divStyle, background: "#D0D0D0", padding: "16px"})
+      setDivStyle2({...divStyle2,color : "black", background: "white", padding: "15px"})
     } else {
-      setDivStyle({...divStyle, background: "black"})
-      setDivStyle2({...divStyle2, background: "black"})
+      setDivStyle({...divStyle, background: "white", padding: "15px"})
+      setDivStyle2({...divStyle2,color :"white", background: "black", padding: "15px"})
     }
   }
 
   function toggleShow() { setIsModalOpen(!isModalOpen); }
   return (
     <React.Fragment>
+    <div style={{height: (isRootAndEmpty) ? "30vh" : "0px"}}></div>
     <div onMouseEnter={() => hover(true)}
-        onMouseLeave={() => hover(false)} className = {(!isRootAndEmpty) ? "treeBtn hoverPointer" : " treeBtn hoverPointer pulse"} style={(!isRootAndEmpty) ? divStyle : divStyle2} onClick={()=> {toggleShow()}}>{text}</div>
+        onMouseLeave={() => hover(false)}
+        className = {(!isRootAndEmpty) ? "hoverPointer" : "hoverPointer pulse"}
+        style={(!isRootAndEmpty) ? divStyle : divStyle2}
+        onClick={()=> {toggleShow()}}>
+        {text}
+    </div>
+
     <PopPop open={isModalOpen} closeBtn={true} onClose={() => {toggleShow()}}>
       <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />
     </PopPop>

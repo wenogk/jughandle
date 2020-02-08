@@ -1,7 +1,9 @@
 import React from 'react'
 import { Tree, TreeNode } from 'react-organizational-chart'
 import Popup from "reactjs-popup";
+import PopPop from 'react-poppop';
 import PathItemInput from './PathItemInput'
+import TreeViewModal from './TreeViewModal'
 import {useSelector, useDispatch} from 'react-redux';
 let obj = {}
 const TreeView = () => {
@@ -22,54 +24,9 @@ const TreeView = () => {
     }
   }
 
-  function getLabelCode(text,idVal) {
-    let borderStyle = "5px solid #1a237e";
-    if(idVal==="root") {
-      borderStyle = "5px solid #b71c1c"
-    } else if(PATHS[idVal].options.length==0) {
-      borderStyle = "5px solid #1b5e20"
-    }
-    let isRootAndEmpty = (idVal=="root" && PATHS[idVal].options.length==0);
-    let divStyle = {
-      color: "white",
-      padding: '15px',
-      display: 'inline-block',
-      border: borderStyle,
-      background: "black",
-      borderRadius: "25px",
-    };
-    let divStyle2 = {
-      color: "white",
-      padding: '15px',
-      display: 'inline-block',
-      border: borderStyle,
-      background: "black",
-      borderRadius: "25px",
-      fontSize: "2vw",
-      top:"30px",
-    };
-    let triggerCode = <div  className={ (isRootAndEmpty) ? "hoverPointer pulse" :"hoverPointer"} style={divStyle}>{text}</div>;
-    if(isRootAndEmpty) {
-      triggerCode = <div className = "hoverPointer pulse" style={divStyle2}>{text}</div>
-    }
+  function getLabelCode(text,id) {
     return (
-
-      <Popup trigger={ triggerCode } modal>
-      {close => (
-      <div className="modal2" style={{maxHeight:"65vh",overflow:"auto"}}>
-        <a className="close" onClick={close}>
-        <i class="tiny material-icons" >close</i>
-        </a>
-
-        <div className="content">
-        <PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)} defaultOptions={PATHS[idVal].options}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />
-        </div>
-
-        </div>
-
-
-    ) }
-    </Popup>
+      <TreeViewModal text={text} idVal={id} />
     )
   }
 

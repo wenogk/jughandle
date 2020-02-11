@@ -6,7 +6,7 @@ function Navbar2() {
   return (
     //<div className="navbar-fixed">
     <nav className="nav-extended purple darken-2" role="navigation">
-      <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">jughandle</Link>
+      <div className="nav-wrapper container"><Link id="logo-container" to="/" className="brand-logo">rivermouth</Link>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/Create">Create</Link></li>
           <li><Link to="/Edit">Edit</Link></li>

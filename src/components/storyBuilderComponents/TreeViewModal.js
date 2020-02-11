@@ -66,7 +66,9 @@ const TreeViewModal = ({text, idVal}) => {
   return (
     <React.Fragment>
     <div style={{height: (isRootAndEmpty) ? "30vh" : "0px"}}></div>
-    <div onMouseEnter={() => hover(true)}
+    <div
+        id = {"pathID-" + idVal}
+        onMouseEnter={() => hover(true)}
         onMouseLeave={() => hover(false)}
         className = {(!isRootAndEmpty) ? "hoverPointer" : "hoverPointer pulse"}
         style={(!isRootAndEmpty) ? divStyle : divStyle2}

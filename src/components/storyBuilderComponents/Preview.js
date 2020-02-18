@@ -20,13 +20,13 @@ const Preview = () => {
   let options = [];
   for(let i in PATHS[currentPathID].options) {
     let option = PATHS[currentPathID].options[i];
-    options.push(<a onClick={() => {loadPath(option.pathID)}}>{option.text}</a>)
+    options.push(<a className="btn-small" onClick={() => {loadPath(option.pathID)}}>{option.text}</a>)
   }
   if(currentPathID!="root") {
-    options.push(<a onClick={() => {loadPath(previousPathID)}}>Previous Path</a>);
-    options.push(<a onClick={() => {loadPath("root")}}>Start Over</a>);
+    options.push(<a className="btn-small" onClick={() => {loadPath(previousPathID)}}>Previous Path</a>);
+    options.push(<a className="btn-small" onClick={() => {loadPath("root")}}>Start Over</a>);
   }
-
+let optionsHolder = <div className="react-player"><div className="valign-wrapper center-align" style={{width:"100%",height:"100%"}}>{options}</div></div>;
 if(PATHS[currentPathID].video =="") {
   return (
     <React.Fragment>
@@ -48,22 +48,21 @@ if(PATHS[currentPathID].video =="") {
   );
 } else {
   console.log("video: " + PATHS[currentPathID].video)
+  let player = <ReactPlayer className='react-player' playing={true} url={PATHS[currentPathID].video} onProgress={videoProgressed} width='100%' height='100%' />
+
   return (
     <React.Fragment>
     <div className="container">
     <div class="row ">
     <div class="col s12 m12">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <ReactPlayer playing={true} url={PATHS[currentPathID].video} onProgress={videoProgressed} />
+
+        <div className='player-wrapper'>
+        {(percentagePlayed>0.95) ? optionsHolder : player}
+              </div>
         </div>
-        <div class="card-action">
-          {(percentagePlayed>0.95) ? options : ""}
           <br />
           <p style={{color:"white"}}>{percentagePlayed}</p>
-        </div>
-      </div>
-    </div>
+
   </div>
   </div>
     </React.Fragment>

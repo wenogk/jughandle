@@ -20,13 +20,13 @@ const Preview = () => {
   let options = [];
   for(let i in PATHS[currentPathID].options) {
     let option = PATHS[currentPathID].options[i];
-    options.push(<a className="btn-small" onClick={() => {loadPath(option.pathID)}}>{option.text}</a>)
+    options.push(<div className="row"><a className="btn-small white" style={{color:"black"}} onClick={() => {loadPath(option.pathID)}}>{option.text}</a></div>)
   }
   if(currentPathID!="root") {
-    options.push(<a className="btn-small" onClick={() => {loadPath(previousPathID)}}>Previous Path</a>);
-    options.push(<a className="btn-small" onClick={() => {loadPath("root")}}>Start Over</a>);
+    options.push(<div className="row"><a className="btn-small white" style={{color:"black"}} onClick={() => {loadPath(previousPathID)}}>Previous Path</a></div>);
+    options.push(<div className="row"><a className="btn-small white" style={{color:"black"}} onClick={() => {loadPath("root")}}>Start Over</a></div>);
   }
-let optionsHolder = <div className="react-player"><div className="valign-wrapper center-align" style={{width:"100%",height:"100%"}}>{options}</div></div>;
+let optionsHolder = <div className="react-player valign-wrapper center-align" style={{width:"100%",height:"100%",background:"black"}}><div className="container" >{options}</div></div>;
 if(PATHS[currentPathID].video =="") {
   return (
     <React.Fragment>

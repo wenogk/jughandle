@@ -34,8 +34,8 @@ let initialState = {
       let index = newState[action.parentID].options.findIndex(x => x.pathID === action.pathID);
       newState[action.parentID].options.splice(index, 1)
       delete newState[action.pathID];
-      console.log(JSON.stringify(action));
-      console.log(JSON.stringify(newState));
+      console.log("delete-option" + JSON.stringify(action));
+      console.log("delete-option" + JSON.stringify(newState));
       return cleanPathState(newState);
     case "change-path-text":
       newState[action.pathID] = {

@@ -3,6 +3,7 @@ import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ListEditableItem from './ListEditableItem'
 import MediaEditableItem from './MediaEditableItem'
+import {useSelector, useDispatch} from 'react-redux';
 function randomID () {
   //check if duplicate id
   function randomIntFromInterval(min, max) { // min and max included
@@ -11,13 +12,15 @@ function randomID () {
   return Math.random().toString(36).substr(2, randomIntFromInterval(9,20));
 }
 const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault, defaultVideoURL, defaultOptions=[]}) => {
-  const [options, setOptions] = useState(defaultOptions)
+  const PATHS = useSelector((state) => {return(state)});
+  //const [options, setOptions] = useState(defaultOptions)
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)
   const [prevPathItemText, setPrevPathItemText] = useState(textVal)
   const [pathItemVideoURL, setPathItemVideoURL] = useState(defaultVideoURL)
   const [hasVideo, setHasVideo] = useState(hasVideoDefault)
   const textAreaBox = useRef("firstRootBox");
+  const dispatch = useDispatch(); //for redux
   function addScript(src){
     var tag = document.createElement('script');
     tag.async = true;
@@ -25,7 +28,9 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(tag);
   }
-
+function onChanged(args) {
+  dispatch(args);
+}
   const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
   useEffect(() => {
@@ -82,41 +87,18 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
 
   function handleAddOptionStep1() {
     let newID = randomID();
-    let newOption = {
-      parentID : pathID,
-      pathID : newID,
-      text : ""
-    }
-    let newOptionsArr = [...options, newOption];
-    setOptions(newOptionsArr);
-  //  onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: "option " + newID});
+    onChanged({type: "add-option", pathID: pathID, newOptionID : newID, text: ""});
   }
 
   function handleAddOptionStep2(parentID, pathID, text) {
-    let newArr = [...options];
-    let index = newArr.findIndex(x => x.pathID === pathID);
-    newArr[index].text = text;
-    setOptions(newArr);
-    onChanged({type: "add-option", pathID: parentID, newOptionID : pathID, text: text});
+    editOptionHandler(pathID, text);
   }
 
   function deleteOptionHandler(parentID, pathID) {
-    console.log("delete option handler function");
-    let newArr = [...options];
-    let index = newArr.findIndex(x => x.pathID === pathID);
-    //console.log("Deleting: " + JSON.stringify(newArr[index]));
-    newArr.splice(index, 1);
-    console.log("Options before: " + JSON.stringify(options));
-    setOptions(newArr);
-    console.log("Options after: " + JSON.stringify(newArr));
     onChanged({type: "delete-option", parentID: parentID,  pathID: pathID});
   }
 
   function editOptionHandler(pathID, newTitle) {
-    let newArr = [...options];
-    let index = newArr.findIndex(x => x.pathID === pathID);
-    newArr[index].text = newTitle;
-    setOptions(newArr);
     onChanged({type: "change-option-text", pathID: pathID, text: newTitle});
   }
 
@@ -133,7 +115,17 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
     };
     M.toast(options);
   }
-
+  function getParentID(pathID) {
+    for (let idVal in PATHS) {
+      for(let optionIndex in PATHS[idVal].options) {
+        if(PATHS[idVal].options[optionIndex].pathID === pathID) {
+          return idVal;
+        }
+      }
+    }
+    return "root";
+  }
+  let optionsFromRedux = PATHS[pathID].options;
   return (
     <React.Fragment>
     <div
@@ -201,17 +193,17 @@ const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVide
        </ul>
       </div>
 
-      { (options.length>0) &&
+      { (optionsFromRedux.length>0) &&
 
       <ul className="collection with-header">
-        <li className="collection-header"><span className="card-title">Options ({options.length})</span></li>
+        <li className="collection-header"><span className="card-title">Options ({optionsFromRedux.length})</span></li>
 
-        {options.map((value) => {
+        {optionsFromRedux.map((value) => {
 
         return (
         ///  <React.Fragment>
         //  <li key={index} className="collection-item"><div>Option {value} <a onClick={e => deleteOptionHandler(e,index)} className="secondary-content"><i className="material-icons red-text">delete_forever</i></a><a className="secondary-content"><i className="material-icons black-text">edit</i></a></div></li>
-        <ListEditableItem editModeVal={false} title={value.text} parentID ={value.parentID} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} setupLabelText="Type the option text and hit enter!" editLabelText="Edit the text and hit enter!" />
+        <ListEditableItem editModeVal={false} title={value.text} parentID ={getParentID(value.pathID)} pathID={value.pathID} deleteCallback={deleteOptionHandler} editCallback={editOptionHandler} setupCompleteCallback={handleAddOptionStep2} setupLabelText="Type the option text and hit enter!" editLabelText="Edit the text and hit enter!" />
 
       );
       })}

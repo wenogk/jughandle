@@ -13,7 +13,6 @@ function randomID () {
 }
 const PathItemInput = ({ title, onChanged, pathID, textVal, parentTitle, hasVideoDefault, defaultVideoURL, defaultOptions=[]}) => {
   const PATHS = useSelector((state) => {return(state)});
-  //const [options, setOptions] = useState(defaultOptions)
   const [counter, setCounter] = useState(0)
   const [pathItemText, setPathItemText] = useState(textVal)
   const [prevPathItemText, setPrevPathItemText] = useState(textVal)

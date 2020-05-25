@@ -4,13 +4,21 @@ import Footer from '../Footer'
 import { Link } from "react-router-dom";
 import M from "materialize-css";
 import Typist from 'react-typist';
-
+import SocialButton from './SocialButton';
+import { GithubLoginButton } from "react-social-login-buttons";
+import { GoogleLoginButton } from "react-social-login-buttons";
 function Home() {
 
 useEffect(() => {
   M.Tooltip.init(".tooltipped");
 });
+const handleSocialLogin = (user) => {
+  console.log(user)
+}
 
+const handleSocialLoginFailure = (err) => {
+  console.error(err)
+}
 
   return (
     <React.Fragment>
@@ -22,23 +30,38 @@ useEffect(() => {
       <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
 
       <h1 className="header center hide-on-med-and-up" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
+      </Typist>
       <div className="container">
         <div className="row center">
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
         </div>
+
         <div className="row center">
+        <SocialButton
+          provider='google'
+          appId='1048507317343-nvfritcgv71asc4ld7lg4gt421grq42j.apps.googleusercontent.com'
+          onLoginSuccess={handleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+          ><center>
+          <GoogleLoginButton style={{width:"auto"}}/>
+          </center>
+            </SocialButton>
+            </div>
+
+      
+          <div className="row center">
         <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="No registrations or payments. We promise.">Create a story now</Link>
         </div>
 
         <br /><br />
 
       </div>
-      </Typist>
+
     </div>
 
 
     <div className="container">
-    
+
       <div className="section">
 
         <div className="row">

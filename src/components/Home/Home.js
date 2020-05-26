@@ -7,7 +7,7 @@ import Typist from 'react-typist';
 import SocialButton from './SocialButton';
 import { GithubLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
-import {UserContext} from '../../UserContext';
+import { UserContext } from '../../UserContext';
 import { Redirect } from 'react-router';
 function Home() {
 const {user, setUser} = useContext(UserContext);

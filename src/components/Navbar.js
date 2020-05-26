@@ -1,6 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router';
+import {UserContext} from '../UserContext';
+
 function Navbar() {
+  const {user, setUser} = useContext(UserContext);
   return (
     //<div className="navbar-fixed">
     <nav className="purple darken-2" role="navigation">
@@ -9,14 +13,18 @@ function Navbar() {
           <li><Link to="/Create">Create</Link></li>
           <li><Link to="/Edit">Edit</Link></li>
           <li><Link to="/About">About</Link></li>
-
-
+          {user.loggedIn &&
+            <li><Link to="/Logout">Logout</Link></li>
+          }
         </ul>
 
         <ul id="nav-mobile" className="sidenav">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/About">About</Link></li>
           <li><Link to="/Create">Create</Link></li>
+          {user.loggedIn &&
+            <li><Link to="/Logout">Logout</Link></li>
+          }
         </ul>
         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
       </div>

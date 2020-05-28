@@ -58,7 +58,7 @@ function StoryList() {
         <a  className="secondary-content"><i onClick={() => { if (window.confirm('Are you sure you wish to delete this story forever?')) deleteStory(story.storyID)}} className="material-icons" style={{color:"red"}}>delete_forever</i></a>
 
         <Link to={"/edit/" + story.storyID} className="secondary-content" style={{paddingLeft:"15px",paddingRight:"15px",color:"blue"}}><i className="material-icons">edit</i></Link>
-        <a href="#!" className="secondary-content"><i className="material-icons">play_circle_outline</i></a>
+        <Link to={"/view/" + story.storyID} className="secondary-content"><i className="material-icons">play_circle_outline</i></Link>
       </div>
     </li>
   );

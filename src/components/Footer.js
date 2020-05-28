@@ -34,7 +34,7 @@ function Footer() {
         </div>
         <div className="footer-copyright">
           <div className="container">
-          Made by <a className="orange-text text-lighten-3" href="http://materializecss.com">D. Romeno Wenogk Fernando</a>
+          Developed by <a className="orange-text text-lighten-3" href="http://materializecss.com">D. Romeno Wenogk Fernando</a>
           </div>
         </div>
       </footer>

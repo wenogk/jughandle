@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios';
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
@@ -55,7 +56,8 @@ function StoryList() {
     <li className="collection-item">
       <div>{story.title}
         <a  className="secondary-content"><i onClick={() => { if (window.confirm('Are you sure you wish to delete this story forever?')) deleteStory(story.storyID)}} className="material-icons" style={{color:"red"}}>delete_forever</i></a>
-        <a href="#!" className="secondary-content" style={{paddingLeft:"15px",paddingRight:"15px",color:"blue"}}><i className="material-icons">edit</i></a>
+
+        <Link to={"/edit/" + story.storyID} className="secondary-content" style={{paddingLeft:"15px",paddingRight:"15px",color:"blue"}}><i className="material-icons">edit</i></Link>
         <a href="#!" className="secondary-content"><i className="material-icons">play_circle_outline</i></a>
       </div>
     </li>

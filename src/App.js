@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Logout from './components/Logout';
+import Edit from './components/Edit';
 import CreateStory from './components/storyBuilderComponents/createStory';
 import {UserContext} from './UserContext';
 import {useState} from 'react';
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/" component={Home} exact />
                 <Route path="/about" component={About} />
                 <Route path="/create" component={CreateStory} />
+                <Route path="/edit/:storyID" component={Edit} />
                 <Route path="/Logout" component={Logout} />
                 </UserContext.Provider>
             </Switch>

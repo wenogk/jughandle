@@ -16,6 +16,9 @@ const API = axios.create({
 });
 function Home() {
 const {user, setUser} = useContext(UserContext);
+let initialIsLoggedIn = (user.loggedIn) ? true : false;
+const [isLoggedIn, setIsLoggedIn] = useState(initialIsLoggedIn);
+
 useEffect(() => {
   M.Tooltip.init(".tooltipped");
 });
@@ -34,6 +37,7 @@ const handleSocialLogin = (loggedInUser) => {
     idToken: idToken
   }).then( res => {
     console.log("API: " + JSON.stringify(res.data));
+    setIsLoggedIn(true);
     localStorage.setItem('user', JSON.stringify(userObject));
     localStorage.setItem('jwtToken', res.data.jwtToken);
     setUser(userObject)
@@ -41,29 +45,30 @@ const handleSocialLogin = (loggedInUser) => {
     console.log(err)
   });
 
- //console.log(loggedInUser)
 }
 
 const handleSocialLoginFailure = (err) => {
   console.error(err)
 }
-
+  let firstName = (user.name) && (user.name).split(' ')[0];
+  let headerTitle = (isLoggedIn) ? "Let's get schwifty, " + firstName : "Build choose-your-own-path experiences.";
   return (
     <React.Fragment>
     <Navbar />
     <div className="section no-pad-bot" id="index-banner">
 
       <br /><br />
-      <Typist avgTypingDelay={40} cursor={{ hideWhenDone: true }}>
-      <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
+      <div className="typewriter">
+      <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>{headerTitle}</h1>
 
-      <h1 className="header center hide-on-med-and-up" style={{color:"#4a148c"}}>Build choose-your-own-path experiences.</h1>
-      </Typist>
+      <h1 className="header center hide-on-med-and-up" style={{color:"#4a148c"}}>{headerTitle}</h1>
+      </div>
       <div className="container">
+      {!user.loggedIn &&
+        <>
         <div className="row center">
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
         </div>
-        {!user.loggedIn &&
         <div className="row center">
         <SocialButton
           provider='google'
@@ -75,10 +80,11 @@ const handleSocialLoginFailure = (err) => {
           </center>
             </SocialButton>
             </div>
+            </>
           }
           {user.loggedIn &&
             <>
-          <div className="row center">
+          <div className="row center" style={{padding:"15px"}}>
 
         <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</Link>
         </div>

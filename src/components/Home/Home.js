@@ -9,13 +9,17 @@ import { GithubLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { UserContext } from '../../UserContext';
 import { Redirect } from 'react-router';
+import axios from 'axios';
+const API = axios.create({
+  baseURL : "https://rivermouth.herokuapp.com/api/"
+});
 function Home() {
 const {user, setUser} = useContext(UserContext);
 useEffect(() => {
   M.Tooltip.init(".tooltipped");
 });
 const handleSocialLogin = (loggedInUser) => {
-  //console.log(loggedInUser);
+  console.log(loggedInUser);
   let userObject = {
     loggedIn: true,
     email: loggedInUser["_profile"].email,
@@ -23,9 +27,20 @@ const handleSocialLogin = (loggedInUser) => {
     userID:loggedInUser["_profile"].id,
     type:loggedInUser["_provider"]
   };
-  localStorage.setItem('user', JSON.stringify(userObject));
-  setUser(userObject)
- console.log(localStorage.getItem('user'))
+  let userID = loggedInUser["_profile"].id;
+  let idToken = loggedInUser["_token"].idToken;
+  API.post('/token',{
+    idToken: idToken
+  }).then( res => {
+    console.log("API: " + JSON.stringify(res.data));
+    localStorage.setItem('user', JSON.stringify(userObject));
+    localStorage.setItem('jwtToken', res.data.jwtToken);
+    setUser(userObject)
+  }).catch(err => {
+    console.log(err)
+  });
+
+ //console.log(loggedInUser)
 }
 
 const handleSocialLoginFailure = (err) => {

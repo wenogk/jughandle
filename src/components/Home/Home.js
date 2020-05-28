@@ -9,6 +9,7 @@ import { GithubLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { UserContext } from '../../UserContext';
 import { Redirect } from 'react-router';
+import StoryList from '../StoryListComponents/StoryList'
 import axios from 'axios';
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
@@ -76,9 +77,13 @@ const handleSocialLoginFailure = (err) => {
             </div>
           }
           {user.loggedIn &&
+            <>
           <div className="row center">
+
         <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</Link>
         </div>
+        <StoryList />
+        </>
       }
 
         <br /><br />

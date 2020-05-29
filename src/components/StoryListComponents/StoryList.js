@@ -8,7 +8,7 @@ const API = axios.create({
 function StoryList() {
   const [stories, setStories] = useState([]);
   const authToken = localStorage.getItem('jwtToken');
-  console.log("JWT IS :" + authToken)
+  //console.log("JWT IS :" + authToken)
   let authConfig = {
     headers: {
         'authorization': authToken,

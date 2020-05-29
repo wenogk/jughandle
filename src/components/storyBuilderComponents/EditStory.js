@@ -8,14 +8,55 @@ import { Link,  useParams } from "react-router-dom";
 import { Redirect } from 'react-router';
 import {UserContext} from '../../UserContext';
 import {useSelector, useDispatch} from 'react-redux';
+import axios from 'axios';
+const API = axios.create({
+  baseURL : "https://rivermouth.herokuapp.com/api/"
+});
 
 export default function EditStory() {
+
   const {user, setUser} = useContext(UserContext);
+
   let { storyID } = useParams();
-const dispatch = useDispatch();
-const PATHS = useSelector((state) => {return(state)});
+  const authToken = localStorage.getItem('jwtToken');
+
+  let authConfig = {
+    headers: {
+        'authorization': authToken,
+    }
+  };
+
+  function getStoryInstance(storyID) {
+
+  }
+
+  function updateStoryInstance(storyID, title, storyString) {
+    API.put("/stories",{
+      storyID: storyID,
+      title: title,
+      storyString: storyString
+    }, authConfig).then(result=> {
+    alert(JSON.stringify(result));
+    }).catch(err=> {
+      console.log("Error while getting stories from database." + err);
+    });
+  }
+
+  updateStoryInstance(storyID,"romeno","hahahahah");
+  getStoryInstance(storyID);
+  let PATHS = useSelector((state) => {return(state)});
+  const dispatch = useDispatch();
+  const [storyTitle,setStoryTitle] = useState("title");
 
 useEffect(()=> {
+  let pathLoader, titleLoader;
+  API.get("/stories/"+storyID, authConfig).then(result => {
+  pathLoader = result.data.storyString;
+  titleLoader = result.data.title;
+  }).catch(err=> {
+    console.log("Error while getting stories from database." + err);
+  });
+  alert("pathLoader: " + pathLoader + " ---- " + "titleLoader: " + titleLoader)
   window.storyBuilderUI(); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[]);
 
@@ -29,6 +70,7 @@ function getParentTitle(pathID) {
     }
   }
 }
+
 var paths = []
 for (let idVal in PATHS) {
   paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />);
@@ -70,27 +112,7 @@ for (let idVal in PATHS) {
         </li>
 
       </ul>
-
-
-<div id="storyMode" className="col s12">
-  <div className="container">
-  <div className="typewriter">
-  <h1 className="header center hide-on-small-only" >create your story.</h1><br/>
-  <h1>STORYID --> {storyID}</h1>
-  </div>
-  {paths}
-  <div className="center-align"><br />
-  <a className=" btn-large"><i className="material-icons left">cloud</i>PUBLISH</a>
-
-  </div>
-    <br />  <br />
-    </div>
-  </div>
-<div id="previewMode" className="col s12">
-<Preview />
-
-</div>
-<div id="treeVisMode" className="col s12" style={{overflow:"auto", minHeight: "100vh"}}>
+<div style={{minHeight:"80vh"}}>
 <TreeView />
 </div>
 

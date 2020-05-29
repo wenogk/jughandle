@@ -65,7 +65,7 @@ const TreeViewModal = ({text, idVal}) => {
   function toggleShow() { setIsModalOpen(!isModalOpen); }
   return (
     <React.Fragment>
-    <div style={{height: (isRootAndEmpty) ? "30vh" : "0px"}}></div>
+    <div style={{height: (isRootAndEmpty) ? "50px" : "0px"}}></div>
     <div
         id = {"pathID-" + idVal}
         onMouseEnter={() => hover(true)}

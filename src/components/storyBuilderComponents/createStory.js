@@ -8,15 +8,6 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import {useSelector, useDispatch} from 'react-redux';
 
-function addScript(src){
-  var tag = document.createElement('script');
-  tag.async = true;
-  tag.src = src;
-  var body = document.getElementsByTagName('body')[0];
-  body.appendChild(tag);
-}
-
-const scriptUrl = process.env.PUBLIC_URL + "js/storyBuilder.js"
 
 export default function CreateStory() {
 
@@ -70,7 +61,7 @@ for (let idVal in PATHS) {
 <Preview />
 
 </div>
-<div id="treeVisMode" className="col s12" style={{overflow:"auto", minHeight: "100vh"}}>
+<div id="treeVisMode" className="col s12" style={{overflow:"auto"}}>
 <TreeView />
 </div>
 

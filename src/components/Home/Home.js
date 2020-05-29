@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import Navbar from '../Navbar'
 import Footer from '../Footer'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
 import Typist from 'react-typist';
 import SocialButton from './SocialButton';
@@ -16,6 +16,7 @@ const API = axios.create({
 });
 function Home() {
 const {user, setUser} = useContext(UserContext);
+const history = useHistory();
 let initialIsLoggedIn = (user.loggedIn) ? true : false;
 const [isLoggedIn, setIsLoggedIn] = useState(initialIsLoggedIn);
 
@@ -50,6 +51,29 @@ const handleSocialLogin = (loggedInUser) => {
 const handleSocialLoginFailure = (err) => {
   console.error(err)
 }
+
+const createNewStory = () => {
+  const authToken = localStorage.getItem('jwtToken');
+  console.log("JWT IS :" + authToken)
+  let authConfig = {
+    headers: {
+        'authorization': authToken,
+    }
+  };
+
+  let title = "Empty title";
+  let storyString = JSON.stringify({});
+  API.post("/stories", {
+    title: title,
+    storyString:storyString
+  }, authConfig).then((result)=> {
+    //load edit page for story id
+    history.push("/edit/"+result.data.storyID);
+  }).catch(err=> {
+    console.log("Error while adding new story to database." + err);
+  });
+}
+
   let firstName = (user.name) && (user.name).split(' ')[0];
   let headerTitle = (isLoggedIn) ? "Let's get schwifty, " + firstName : "Build choose-your-own-path experiences.";
   return (
@@ -86,7 +110,7 @@ const handleSocialLoginFailure = (err) => {
             <>
           <div className="row center" style={{padding:"15px"}}>
 
-        <Link to="/Create" id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</Link>
+        <button onClick={()=>{createNewStory()}} id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</button>
         </div>
         <StoryList />
         </>

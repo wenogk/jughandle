@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import {UserContext} from '../UserContext';
 
+function addScript(src){
+  var tag = document.createElement('script');
+  tag.async = true;
+  tag.src = src;
+  var body = document.getElementsByTagName('body')[0];
+  body.appendChild(tag);
+}
+
+const scriptUrl = "https://rivermouth.herokuapp.com/js/storyBuilder.js"
+
 function Navbar2() {
   const {user, setUser} = useContext(UserContext);
+  addScript(scriptUrl)
   return (
     //<div className="navbar-fixed">
     <nav className="nav-extended purple darken-2" role="navigation">

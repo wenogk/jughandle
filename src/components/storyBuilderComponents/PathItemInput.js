@@ -146,7 +146,7 @@ function onChanged(args) {
       </div>
     <div className="row">
      <div className="col s12 m12">
-       <div className={((pathItemText.trim().length>0)||(hasVideo)) ? "card grey lighten-4" : "card grey lighten-4 pulse"} style={{height:"auto"}}>
+       <div className={((pathItemText.trim().length>0)||(hasVideo)) ? "card grey lighten-4" : "card grey lighten-4"} style={{height:"auto"}}>
          <div className="card-content">
          <span className="hoverPointer new badge blue" data-badge-caption={"#" + pathID}></span>
 

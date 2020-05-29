@@ -6,7 +6,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Logout from './components/Logout';
-import Edit from './components/Edit';
+import EditStory from './components/storyBuilderComponents/EditStory';
 import CreateStory from './components/storyBuilderComponents/createStory';
 import StoryViewer from './components/StoryViewerComponents/StoryViewer';
 import {UserContext} from './UserContext';
@@ -26,7 +26,7 @@ function App() {
                 <Route path="/about" ><About /></Route>
                 <Route path="/create"><CreateStory /></Route>
                 <Route path="/Logout" ><Logout /></Route>
-                <Route path="/edit/:storyID" strict exact ><Edit /></Route>
+                <Route path="/edit/:storyID" strict exact ><EditStory /></Route>
                 <Route path="/view/:storyID" strict exact><StoryViewer /></Route>
                 </UserContext.Provider>
             </Switch>

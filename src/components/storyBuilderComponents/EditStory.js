@@ -16,7 +16,9 @@ const API = axios.create({
 export default function EditStory() {
 
   const {user, setUser} = useContext(UserContext);
-
+  const PATHS = useSelector((state) => {return(state)});
+  const dispatch = useDispatch();
+  const [storyTitle,setStoryTitle] = useState("title");
   let { storyID } = useParams();
   const authToken = localStorage.getItem('jwtToken');
 
@@ -27,7 +29,20 @@ export default function EditStory() {
   };
 
   function getStoryInstance(storyID) {
+    function dispatchFromStoryString(storyString) {
+      let storyObj = JSON.parse(storyString);
+      alert(JSON.stringify(storyString));
+    }
+    let pathLoader, titleLoader;
+    API.get("/stories/"+storyID, authConfig).then(result => {
+    //pathLoader = result.data.storyString;
 
+    setStoryTitle(result.data[0].title);
+    dispatchFromStoryString(result.data[0].storyString)
+    }).catch(err=> {
+      console.log("Error while getting stories from database." + err);
+    });
+    //alert("pathLoader: " + pathLoader + " ---- " + "titleLoader: " + titleLoader)
   }
 
   function updateStoryInstance(storyID, title, storyString) {
@@ -36,27 +51,18 @@ export default function EditStory() {
       title: title,
       storyString: storyString
     }, authConfig).then(result=> {
-    alert(JSON.stringify(result));
+  //  alert(JSON.stringify(result));
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
   }
 
-  updateStoryInstance(storyID,"romeno","hahahahah");
-  getStoryInstance(storyID);
-  let PATHS = useSelector((state) => {return(state)});
-  const dispatch = useDispatch();
-  const [storyTitle,setStoryTitle] = useState("title");
+  //updateStoryInstance(storyID, "romeno","hahahahah");
+//  getStoryInstance(storyID);
+
 
 useEffect(()=> {
-  let pathLoader, titleLoader;
-  API.get("/stories/"+storyID, authConfig).then(result => {
-  pathLoader = result.data.storyString;
-  titleLoader = result.data.title;
-  }).catch(err=> {
-    console.log("Error while getting stories from database." + err);
-  });
-  alert("pathLoader: " + pathLoader + " ---- " + "titleLoader: " + titleLoader)
+  getStoryInstance(storyID);
   window.storyBuilderUI(); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[]);
 
@@ -80,7 +86,7 @@ for (let idVal in PATHS) {
   <Navbar2 />
   <ul className="collection">
         <li className="collection-item">
-        <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
+        <input placeholder="Placeholder" id="first_name" type="text" className="validate" value={storyTitle} />
 
         <div class="valign-wrapper center-align secondary-content">
 

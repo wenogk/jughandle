@@ -54,15 +54,21 @@ const handleSocialLoginFailure = (err) => {
 
 const createNewStory = () => {
   const authToken = localStorage.getItem('jwtToken');
-  console.log("JWT IS :" + authToken)
   let authConfig = {
     headers: {
         'authorization': authToken,
     }
   };
 
-  let title = "Empty title";
-  let storyString = JSON.stringify({});
+  let title = "Empty title " + new Date().toLocaleString();
+  let storyString = JSON.stringify({
+    "root" : {
+      title: "Empty first root " + new Date().toLocaleString(),
+      text: "",
+      options: [],
+      video: ""
+    }
+  });
   API.post("/stories", {
     title: title,
     storyString:storyString

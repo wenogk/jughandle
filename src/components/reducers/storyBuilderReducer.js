@@ -11,6 +11,8 @@ let initialState = {
   let newState = {...state}
   console.log("new reducer action: " + action.type);
   switch (action.type) {
+    case "reset-state" :
+      return {};
     case "add-option" :
       let newOption = {
         pathID : action.newOptionID,

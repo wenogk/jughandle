@@ -13,6 +13,15 @@ let initialState = {
   switch (action.type) {
     case "reset-state" :
       return {};
+    case "add-new-path" :
+      let newPath = {
+        title: action.newTitle,
+        text : action.newText,
+        options: action.newOptions,
+        video: action.newVideo
+      }
+      newState[action.newPathID] = newPath;
+      return newState;
     case "add-option" :
       let newOption = {
         pathID : action.newOptionID,

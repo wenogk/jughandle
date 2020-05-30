@@ -8,6 +8,7 @@ import { Link,  useParams } from "react-router-dom";
 import { Redirect } from 'react-router';
 import {UserContext} from '../../UserContext';
 import {useSelector, useDispatch} from 'react-redux';
+import M from "materialize-css";
 import axios from 'axios';
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
@@ -19,6 +20,7 @@ export default function EditStory() {
   const PATHS = useSelector((state) => {return(state)});
   const dispatch = useDispatch();
   const [storyTitle,setStoryTitle] = useState("title");
+  const [storyDataLoaded,setStoryDataLoaded] = useState(false);
   let { storyID } = useParams();
   const authToken = localStorage.getItem('jwtToken');
 
@@ -31,27 +33,45 @@ export default function EditStory() {
   function getStoryInstance(storyID) {
     function dispatchFromStoryString(storyString) {
       let storyObj = JSON.parse(storyString);
-      alert(JSON.stringify(storyString));
+      //alert(JSON.stringify(storyString));
+
+      dispatch({type:"reset-state"});
+      Object.keys(storyObj).forEach(pathID => {
+        //console.log(pathID);        // the name of the current key.
+        //alert(storyObj[pathID].options); // the value of the current key.
+      dispatch({type: "add-new-path", newPathID: pathID, newTitle: storyObj[pathID].title, newOptions : storyObj[pathID].options, newText: storyObj[pathID].text, newVideo: storyObj[pathID].video});
+      });
     }
     let pathLoader, titleLoader;
     API.get("/stories/"+storyID, authConfig).then(result => {
     //pathLoader = result.data.storyString;
-
+    setStoryDataLoaded(false);
     setStoryTitle(result.data[0].title);
-    dispatchFromStoryString(result.data[0].storyString)
+    dispatchFromStoryString(result.data[0].storyString);
+    setStoryDataLoaded(true);
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
     //alert("pathLoader: " + pathLoader + " ---- " + "titleLoader: " + titleLoader)
   }
 
-  function updateStoryInstance(storyID, title, storyString) {
+  function updateStoryInstance() {
+    function onSaveSuccess() {
+        const options = {
+          html: "Saved!",
+          inDuration: 300,
+          outDuration: 375,
+          displyLength: 4000,
+          classes: "rounded",
+        };
+        M.toast(options);
+    }
     API.put("/stories",{
       storyID: storyID,
-      title: title,
-      storyString: storyString
+      title: storyTitle,
+      storyString: JSON.stringify(PATHS),
     }, authConfig).then(result=> {
-  //  alert(JSON.stringify(result));
+      onSaveSuccess();
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
@@ -86,7 +106,7 @@ for (let idVal in PATHS) {
   <Navbar2 />
   <ul className="collection">
         <li className="collection-item">
-        <input placeholder="Placeholder" id="first_name" type="text" className="validate" value={storyTitle} />
+        <input onChange={event => setStoryTitle(event.target.value)} placeholder="Placeholder" id="first_name" type="text" className="validate" value={storyTitle} />
 
         <div class="valign-wrapper center-align secondary-content">
 
@@ -102,11 +122,11 @@ for (let idVal in PATHS) {
             </label>
           </div>
           <div className="" style={{paddingRight:"15px"}} >
-            <a className="waves-effect waves-light btn-small"><i className="material-icons right">play_circle_filled</i>Preview</a>
+            <a className="btn-small"><i className="material-icons right">play_circle_filled</i>Preview</a>
 
           </div>
           <div className="" >
-            <a className="waves-effect waves-light btn-small"><i className="material-icons right">cloud</i>Save</a>
+            <a onClick={()=>{updateStoryInstance()}} className="btn-small"><i className="material-icons right">cloud</i>Save</a>
 
           </div>
           <div>
@@ -119,7 +139,9 @@ for (let idVal in PATHS) {
 
       </ul>
 <div style={{minHeight:"80vh"}}>
+{storyDataLoaded &&
 <TreeView />
+}
 </div>
 
   <Footer />

@@ -24,6 +24,7 @@ export default function EditStory() {
   const [published,setPublished] = useState(true);
   const [lastSaveTime,setLastSaveTime] = useState("time");
   const [storyDataLoaded,setStoryDataLoaded] = useState(false);
+  const [currentStateUnsaved,setCurrentStateUnsaved] = useState(false);
   let { storyID } = useParams();
   const authToken = localStorage.getItem('jwtToken');
 
@@ -72,6 +73,7 @@ export default function EditStory() {
     }, authConfig).then(result=> {
       onSaveSuccess();
       setLastSaveTime(Date.now());
+      setCurrentStateUnsaved(false);
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
@@ -85,6 +87,11 @@ useEffect(()=> {
   getStoryInstance(storyID);
   window.storyBuilderUI(); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[]);
+
+useEffect(()=> {
+  setCurrentStateUnsaved(true); //for the tab changing (preview, tree view etc.) in materialize UI stuff
+},[PATHS]);
+
 
 function getParentTitle(pathID) {
   for (let idVal in PATHS) {
@@ -108,17 +115,21 @@ let prettyDate = date.toLocaleString();
   <Navbar2 />
   <ul className="collection">
         <li className="collection-item">
-        <input onChange={event => setStoryTitle(event.target.value)} placeholder="Placeholder" id="first_name" type="text" className="validate" value={storyTitle} />
+        <input onChange={event => {setStoryTitle(event.target.value);setCurrentStateUnsaved(true);}} placeholder="Placeholder" id="first_name" type="text" className="validate" value={storyTitle} />
 
         <div class="valign-wrapper center-align secondary-content">
 
           <div class="">
+            {currentStateUnsaved &&
+            <p style={{color:"red"}}>Current state not saved</p>
+          }{!currentStateUnsaved &&
             <p>Saved last on {prettyDate} </p>
+          }
           </div>
           <div  class="switch" style={{paddingLeft:"15px",paddingRight:"15px"}}>
             <label>
                 <span style={{fontWeight: (!published) ? "bold" : ""}}>Unpublished</span>
-                <input onChange={(e) => {setPublished(!published);}} type="checkbox" checked={(published) ? "checked" : ""}  />
+                <input onChange={(e) => {setPublished(!published); setCurrentStateUnsaved(true);}} type="checkbox" checked={(published) ? "checked" : ""}  />
                 <span class="lever"></span>
                 <span style={{fontWeight: (published) ? "bold" : ""}}>Published</span>
             </label>

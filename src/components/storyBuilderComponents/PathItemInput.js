@@ -161,9 +161,14 @@ function onChanged(args) {
              </ul>
          ) : ""}
 
-           {PATHS[pathID].image!=null &&
+           {((PATHS[pathID].image!=null)) &&
              <div class="collection">
-             <a href="#!" class="collection-item"><span class="badge">image url</span>{PATHS[pathID].image}</a>
+            <div class="collection-item"> <a href={PATHS[pathID].image} target="_blank">{PATHS[pathID].image}</a><a onClick={()=>{
+              if (window.confirm('Are you sure you wish to remove this image?')){
+               onChanged({type: "delete-image", pathID: pathID});
+              }
+             }
+           } class="secondary-content">Remove image</a></div>
              </div>
            }
 

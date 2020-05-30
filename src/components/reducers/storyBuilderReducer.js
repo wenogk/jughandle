@@ -41,8 +41,7 @@ let initialState = {
         title : action.text,
         text : "",
         options: [],
-        image:"",
-        video: ""
+        video:""
       }
       console.log(JSON.stringify(newState));
       return newState;

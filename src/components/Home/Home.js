@@ -82,12 +82,31 @@ const createNewStory = () => {
 
   let firstName = (user.name) && (user.name).split(' ')[0];
   let headerTitle = (isLoggedIn) ? "Let's get schwifty, " + firstName : "Build choose-your-own-path experiences.";
+  function fileHandler(e){
+console.log((e.target.files[0]))
+let formData = new FormData();
+formData.append("key","ba1ef7bbdafd46e85dc0afdeff474c96")
+formData.append("image",e.target.files[0])
+ const reader = new FileReader();
+ axios({
+   url: "https://api.imgbb.com/1/upload",
+   method:"POST",
+   data: formData
+ }
+).then((response)=>{console.log(response.data.data.url)});
+    console.log(reader.readAsDataURL(e.target.files[0]));
+
+  }
   return (
     <React.Fragment>
     <Navbar />
     <div className="section no-pad-bot" id="index-banner">
 
       <br /><br />
+      <input type="file" id="file-upload" style={{display:"none"}} onChange={(e)=>{fileHandler(e)}} />
+      <label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> Custom Upload
+</label>
       <div className="typewriter">
       <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>{headerTitle}</h1>
 

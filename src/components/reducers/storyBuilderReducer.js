@@ -20,6 +20,7 @@ let initialState = {
         title: action.newTitle,
         text : action.newText,
         options: action.newOptions,
+        image : action.image,
         video: action.newVideo
       }
       newState[action.newPathID] = newPath;
@@ -33,12 +34,14 @@ let initialState = {
         title : state[action.pathID].title,
         text : state[action.pathID].text,
         options : [...state[action.pathID].options, newOption],
+        image : state[action.pathID].image,
         video : state[action.pathID].video
       };
       newState[action.newOptionID] = {
         title : action.text,
         text : "",
         options: [],
+        image:"",
         video: ""
       }
       console.log(JSON.stringify(newState));
@@ -55,6 +58,7 @@ let initialState = {
         title : state[action.pathID].title,
         text : action.text,
         video : state[action.pathID].video,
+        image : state[action.pathID].image,
         options : [...state[action.pathID].options],
       };
       console.log(JSON.stringify(newState));
@@ -79,6 +83,7 @@ let initialState = {
       newState[action.pathID] = {
         title : state[action.pathID].title,
         text : state[action.pathID].text,
+        image : state[action.pathID].image,
         video : action.url,
         options : [...state[action.pathID].options],
       };
@@ -87,6 +92,7 @@ let initialState = {
       newState[action.pathID] = {
         title : state[action.pathID].title,
         text : state[action.pathID].text,
+        image : state[action.pathID].image,
         video : action.url,
         options : [...state[action.pathID].options],
       };
@@ -95,11 +101,36 @@ let initialState = {
       newState[action.pathID] = {
         title : state[action.pathID].title,
         text : state[action.pathID].text,
+        image : state[action.pathID].image,
         options : [...state[action.pathID].options],
       };
       return newState;
-    case "add-image":
-      return;
+      case "add-image" :
+        newState[action.pathID] = {
+          title : state[action.pathID].title,
+          text : state[action.pathID].text,
+          image : action.url,
+          video : state[action.pathID].video,
+          options : [...state[action.pathID].options],
+        };
+        return newState;
+      case "edit-image":
+        newState[action.pathID] = {
+          title : state[action.pathID].title,
+          text : state[action.pathID].text,
+          image : action.url,
+          video : state[action.pathID].video,
+          options : [...state[action.pathID].options],
+        };
+        return newState;
+      case "delete-image":
+        newState[action.pathID] = {
+          title : state[action.pathID].title,
+          text : state[action.pathID].text,
+          video : state[action.pathID].video,
+          options : [...state[action.pathID].options],
+        };
+        return newState;
     default:
       return state;
   }

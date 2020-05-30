@@ -3,6 +3,7 @@ import M from "materialize-css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ListEditableItem from './ListEditableItem'
 import MediaEditableItem from './MediaEditableItem'
+import ImageHandler from './ImageHandler'
 import {useSelector, useDispatch} from 'react-redux';
 function randomID () {
   //check if duplicate id
@@ -154,11 +155,17 @@ function onChanged(args) {
          {(hasVideo) ? (
            <ul className="collection with-header ">
 
-              <MediaEditableItem editModeVal={false} pathID={pathID} deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Paste the vimeo video link here and hit enter!" editLabelText="Edit the url and hit enter!" mediaURL={pathItemVideoURL} />
+              <MediaEditableItem editModeVal={false} pathID={pathID} deleteCallback={deleteVideoHandler} editCallback={editVideoHandler} setupCompleteCallback={handleAddVideoStep2} setupLabelText="Paste the youtube or vimeo video link here and hit enter!" editLabelText="Edit the url and hit enter!" mediaURL={pathItemVideoURL} />
 
 
              </ul>
          ) : ""}
+
+           {PATHS[pathID].image!=null &&
+             <div class="collection">
+             <a href="#!" class="collection-item"><span class="badge">image url</span>{PATHS[pathID].image}</a>
+             </div>
+           }
 
 
            <div className="input-field col s12">
@@ -181,7 +188,7 @@ function onChanged(args) {
          <ul className="list-inline">
        <li style={{padding:"5px"}}><a onClick={handleAddOptionStep1} className="tooltipped btn-small purple" data-tooltip="Add a option for a story pathway."><i className="material-icons right">queue</i>Add option</a></li>
     <li style={{padding:"5px"}}><a onClick={handleAddVideoStep1} className="tooltipped btn-small black" data-tooltip="Add a video for this story item."><i className="material-icons right">video_call</i>Video</a></li>
-    <li style={{padding:"5px"}}><a className="tooltipped btn-small teal darken-4" data-tooltip="Add an image to this story item."><i className="material-icons right">collections</i>Picture</a></li>
+    <li style={{padding:"5px"}}>{ < ImageHandler pathID={pathID} />}</li>
     <li style={{padding:"5px"}}>
     <CopyToClipboard text={pathID /* option id val here! */}
               onCopy={() => {copyPathIDSuccess()}}>

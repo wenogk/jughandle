@@ -128,7 +128,7 @@ const createNewStory = () => {
 
     </div>
 
-
+{!user.loggedIn &&
     <div className="container">
 
       <div className="section">
@@ -164,6 +164,7 @@ const createNewStory = () => {
       </div>
 
     </div>
+  }
     <script>
     const player = new Plyr('#player');
     </script>

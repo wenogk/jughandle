@@ -68,8 +68,6 @@ let description = descriptions[Math.floor(Math.random() * descriptions.length)];
 
   return (
     <div>
-      <button onClick={newStoryGenerator}>New Story</button>
-      <br />
       <ul class="collection with-header">
   <li class="collection-header"><h4>Your <u>{description}</u> stories</h4></li>
 {displayStories}

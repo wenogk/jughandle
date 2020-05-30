@@ -10,6 +10,7 @@ import {UserContext} from '../../UserContext';
 import {useSelector, useDispatch} from 'react-redux';
 import M from "materialize-css";
 import axios from 'axios';
+import TimeAgo from 'react-timeago'
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
 });
@@ -20,6 +21,8 @@ export default function EditStory() {
   const PATHS = useSelector((state) => {return(state)});
   const dispatch = useDispatch();
   const [storyTitle,setStoryTitle] = useState("title");
+  const [published,setPublished] = useState(true);
+  const [lastSaveTime,setLastSaveTime] = useState("time");
   const [storyDataLoaded,setStoryDataLoaded] = useState(false);
   let { storyID } = useParams();
   const authToken = localStorage.getItem('jwtToken');
@@ -40,6 +43,8 @@ export default function EditStory() {
     //pathLoader = result.data.storyString;
     setStoryDataLoaded(false);
     setStoryTitle(result.data[0].title);
+    setLastSaveTime(result.data[0].lastSaveTime);
+    setPublished(result.data[0].published);
     dispatchFromStoryString(result.data[0].storyString);
     setStoryDataLoaded(true);
     }).catch(err=> {
@@ -63,8 +68,10 @@ export default function EditStory() {
       storyID: storyID,
       title: storyTitle,
       storyString: JSON.stringify(PATHS),
+      published: published
     }, authConfig).then(result=> {
       onSaveSuccess();
+      setLastSaveTime(Date.now());
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
@@ -94,6 +101,8 @@ var paths = []
 for (let idVal in PATHS) {
   paths.push(<PathItemInput title={PATHS[idVal].title} pathID={idVal} textVal={PATHS[idVal].text} onChanged={dispatch} parentTitle={getParentTitle(idVal)}  hasVideoDefault={(PATHS[idVal].video=="") ? false : true} defaultVideoURL={PATHS[idVal].video} />);
 }
+let date = new Date(Number(lastSaveTime));
+let prettyDate = date.toLocaleString();
   return (
   <React.Fragment>
   <Navbar2 />
@@ -104,14 +113,14 @@ for (let idVal in PATHS) {
         <div class="valign-wrapper center-align secondary-content">
 
           <div class="">
-            <p>Saved last at 10/10/2020</p>
+            <p>Saved last on {prettyDate} </p>
           </div>
-          <div class="switch" style={{paddingLeft:"15px",paddingRight:"15px"}}>
+          <div  class="switch" style={{paddingLeft:"15px",paddingRight:"15px"}}>
             <label>
-                Unpublished
-                <input type="checkbox" checked />
+                <span style={{fontWeight: (!published) ? "bold" : ""}}>Unpublished</span>
+                <input onChange={(e) => {setPublished(!published);}} type="checkbox" checked={(published) ? "checked" : ""}  />
                 <span class="lever"></span>
-                Published
+                <span style={{fontWeight: (published) ? "bold" : ""}}>Published</span>
             </label>
           </div>
           <div className="" style={{paddingRight:"15px"}} >

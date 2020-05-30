@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import BarLoader from "react-spinners/BarLoader";
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
 });
@@ -8,6 +9,7 @@ const API = axios.create({
 function StoryList() {
   const [stories, setStories] = useState([]);
   const authToken = localStorage.getItem('jwtToken');
+  const [isStoryDataLoading, setIsStoryDataLoading] = useState(false);
   //console.log("JWT IS :" + authToken)
   let authConfig = {
     headers: {
@@ -15,7 +17,9 @@ function StoryList() {
     }
   };
   useEffect(()=>{
+    setIsStoryDataLoading(true);
     API.get("/stories", authConfig).then(result=> {
+      setIsStoryDataLoading(false)
       setStories(result.data)
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
@@ -68,10 +72,19 @@ let description = descriptions[Math.floor(Math.random() * descriptions.length)];
 
   return (
     <div>
+    {!isStoryDataLoading&&
       <ul class="collection with-header">
   <li class="collection-header"><h4>Your <u>{description}</u> stories</h4></li>
 {displayStories}
 </ul>
+    }
+    <div className="row center"><center>
+    <BarLoader
+             size={10}
+             color={"black"}
+             loading={isStoryDataLoading}
+           /></center>
+           </div>
     </div>
   );
 }

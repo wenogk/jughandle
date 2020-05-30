@@ -11,6 +11,7 @@ import { UserContext } from '../../UserContext';
 import { Redirect } from 'react-router';
 import StoryList from '../StoryListComponents/StoryList'
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
 });
@@ -19,11 +20,12 @@ const {user, setUser} = useContext(UserContext);
 const history = useHistory();
 let initialIsLoggedIn = (user.loggedIn) ? true : false;
 const [isLoggedIn, setIsLoggedIn] = useState(initialIsLoggedIn);
-
+const [isUserDataLoading, setIsUserDataLoading] = useState(false);
 useEffect(() => {
   M.Tooltip.init(".tooltipped");
 });
 const handleSocialLogin = (loggedInUser) => {
+  setIsUserDataLoading(true);
   console.log(loggedInUser);
   let userObject = {
     loggedIn: true,
@@ -42,6 +44,7 @@ const handleSocialLogin = (loggedInUser) => {
     localStorage.setItem('user', JSON.stringify(userObject));
     localStorage.setItem('jwtToken', res.data.jwtToken);
     setUser(userObject)
+    setIsUserDataLoading(false)
   }).catch(err => {
     console.log(err)
   });
@@ -82,38 +85,28 @@ const createNewStory = () => {
 
   let firstName = (user.name) && (user.name).split(' ')[0];
   let headerTitle = (isLoggedIn) ? "Let's get schwifty, " + firstName : "Build choose-your-own-path experiences.";
-  function fileHandler(e){
-console.log((e.target.files[0]))
-let formData = new FormData();
-formData.append("key","ba1ef7bbdafd46e85dc0afdeff474c96")
-formData.append("image",e.target.files[0])
- const reader = new FileReader();
- axios({
-   url: "https://api.imgbb.com/1/upload",
-   method:"POST",
-   data: formData
- }
-).then((response)=>{console.log(response.data.data.url)});
-    console.log(reader.readAsDataURL(e.target.files[0]));
 
-  }
   return (
     <React.Fragment>
     <Navbar />
     <div className="section no-pad-bot" id="index-banner">
 
       <br /><br />
-      <input type="file" id="file-upload" style={{display:"none"}} onChange={(e)=>{fileHandler(e)}} />
-      <label for="file-upload" class="custom-file-upload">
-    <i class="fa fa-cloud-upload"></i> Custom Upload
-</label>
+
       <div className="typewriter">
       <h1 className="header center hide-on-small-only" style={{color:"#4a148c"}}>{headerTitle}</h1>
 
       <h1 className="header center hide-on-med-and-up" style={{color:"#4a148c"}}>{headerTitle}</h1>
       </div>
       <div className="container">
-      {!user.loggedIn &&
+        <div className="row center">
+      <ClipLoader
+               size={150}
+               color={"black"}
+               loading={isUserDataLoading}
+             />
+             </div>
+      {(!user.loggedIn) &&
         <>
         <div className="row center">
           <h5 className="header col s12 light">You focus on the story, we'll handle the technical stuff.</h5>
@@ -135,7 +128,7 @@ formData.append("image",e.target.files[0])
             <>
           <div className="row center" style={{padding:"15px"}}>
 
-        <button onClick={()=>{createNewStory()}} id="download-button" className="tooltipped btn-large waves-effect waves-teal float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</button>
+        <button onClick={()=>{createNewStory()}} id="download-button" className="tooltipped btn-large waves-effect waves-purple float-ease-in-out pulse" style={{background:"black"}} data-tooltip="It's free, I promise.">Create a story now</button>
         </div>
         <StoryList />
         </>
@@ -147,7 +140,7 @@ formData.append("image",e.target.files[0])
 
     </div>
 
-{!user.loggedIn &&
+{(!user.loggedIn) &&
     <div className="container">
 
       <div className="section">

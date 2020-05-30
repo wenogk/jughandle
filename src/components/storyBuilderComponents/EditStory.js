@@ -11,6 +11,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import M from "materialize-css";
 import axios from 'axios';
 import TimeAgo from 'react-timeago'
+import ClipLoader from "react-spinners/ClipLoader";
+import GridLoader from "react-spinners/GridLoader";
+
 const API = axios.create({
   baseURL : "https://rivermouth.herokuapp.com/api/"
 });
@@ -23,6 +26,7 @@ export default function EditStory() {
   const [storyTitle,setStoryTitle] = useState("title");
   const [published,setPublished] = useState(true);
   const [lastSaveTime,setLastSaveTime] = useState("time");
+  const [isSaving,setIsSaving] = useState(false)
   const [storyDataLoaded,setStoryDataLoaded] = useState(false);
   const [currentStateUnsaved,setCurrentStateUnsaved] = useState(false);
   let { storyID } = useParams();
@@ -33,7 +37,9 @@ export default function EditStory() {
         'authorization': authToken,
     }
   };
-
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   function getStoryInstance(storyID) {
     function dispatchFromStoryString(storyString) {
       dispatch({type:"reset-state"});
@@ -47,7 +53,12 @@ export default function EditStory() {
     setLastSaveTime(result.data[0].lastSaveTime);
     setPublished(result.data[0].published);
     dispatchFromStoryString(result.data[0].storyString);
-    setStoryDataLoaded(true);
+
+    setCurrentStateUnsaved(false);
+    setTimeout(function(){
+setStoryDataLoaded(true);
+}, getRandomInt(3000,5000));
+
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
@@ -55,6 +66,7 @@ export default function EditStory() {
   }
 
   function updateStoryInstance() {
+    setIsSaving(true)
     function onSaveSuccess() {
         const options = {
           html: "Saved!",
@@ -74,6 +86,7 @@ export default function EditStory() {
       onSaveSuccess();
       setLastSaveTime(Date.now());
       setCurrentStateUnsaved(false);
+      setIsSaving(false);
     }).catch(err=> {
       console.log("Error while getting stories from database." + err);
     });
@@ -85,6 +98,7 @@ export default function EditStory() {
 
 useEffect(()=> {
   getStoryInstance(storyID);
+
   window.storyBuilderUI(); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[]);
 
@@ -139,7 +153,14 @@ let prettyDate = date.toLocaleString();
 
           </div>
           <div className="" >
-            <a onClick={()=>{updateStoryInstance()}} className="btn-small"><i className="material-icons right">cloud</i>Save</a>
+          <ClipLoader
+                   color={"black"}
+                   loading={isSaving}
+                 />
+                 {(!isSaving)&&
+                     <a onClick={()=>{updateStoryInstance()}} className="btn-small" style={{display: (currentStateUnsaved) ? "block" : "none"}}><i className="material-icons right">cloud</i>Save</a>
+                 }
+
 
           </div>
           <div>
@@ -152,6 +173,12 @@ let prettyDate = date.toLocaleString();
 
       </ul>
 <div style={{minHeight:"80vh"}}>
+<div style={{paddingTop: !storyDataLoaded ? "150px" : "0px"}}><center >
+<GridLoader
+size="50"
+         color={"purple"}
+         loading={!storyDataLoaded}
+       /></center></div>
 {storyDataLoaded &&
 <TreeView />
 }

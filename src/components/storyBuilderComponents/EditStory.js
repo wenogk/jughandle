@@ -32,15 +32,8 @@ export default function EditStory() {
 
   function getStoryInstance(storyID) {
     function dispatchFromStoryString(storyString) {
-      let storyObj = JSON.parse(storyString);
-      //alert(JSON.stringify(storyString));
-
       dispatch({type:"reset-state"});
-      Object.keys(storyObj).forEach(pathID => {
-        //console.log(pathID);        // the name of the current key.
-        //alert(storyObj[pathID].options); // the value of the current key.
-      dispatch({type: "add-new-path", newPathID: pathID, newTitle: storyObj[pathID].title, newOptions : storyObj[pathID].options, newText: storyObj[pathID].text, newVideo: storyObj[pathID].video});
-      });
+      dispatch({type:"set-state", newStoryString: storyString})
     }
     let pathLoader, titleLoader;
     API.get("/stories/"+storyID, authConfig).then(result => {

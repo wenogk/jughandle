@@ -10,6 +10,7 @@ import EditStory from './components/storyBuilderComponents/EditStory';
 import CreateStory from './components/storyBuilderComponents/createStory';
 import StoryViewer from './components/StoryViewerComponents/StoryViewer';
 import {UserContext} from './UserContext';
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import {useState} from 'react';
 function App() {
 
@@ -24,9 +25,9 @@ function App() {
                 <UserContext.Provider value={{user, setUser}}>
                 <Route path="/" exact ><Home /></Route>
                 <Route path="/about" ><About /></Route>
-                <Route path="/create"><CreateStory /></Route>
-                <Route path="/Logout" ><Logout /></Route>
-                <Route path="/edit/:storyID" strict exact ><EditStory /></Route>
+                <ProtectedRoute path="/create" component={CreateStory} />
+                <ProtectedRoute path="/Logout" component={Logout} />
+                <ProtectedRoute path="/edit/:storyID" strict exact component={EditStory} />
                 <Route path="/view/:storyID" strict exact><StoryViewer /></Route>
                 </UserContext.Provider>
             </Switch>

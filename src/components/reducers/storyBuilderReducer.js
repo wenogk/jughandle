@@ -13,6 +13,8 @@ let initialState = {
   switch (action.type) {
     case "reset-state" :
       return {};
+    case "set-state" :
+      return JSON.parse(action.newStoryString);
     case "add-new-path" :
       let newPath = {
         title: action.newTitle,

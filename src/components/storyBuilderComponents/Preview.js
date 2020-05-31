@@ -12,7 +12,6 @@ const Preview = () => {
     setPercentagePlayed(0) //reset the percentage played
     setPreviousPathID(currentPathID)
     setCurrentPathID(idVal)
-
   }
   function videoProgressed({played, loaded, playedSeconds, loadedSeconds}) {
       setPercentagePlayed(played);

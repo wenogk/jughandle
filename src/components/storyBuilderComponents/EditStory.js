@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect, useContext } from 'react'
+import React, { useReducer, useState, useEffect, useContext, useLayoutEffect } from 'react'
 import Navbar2 from '../Navbar'
 import Footer from '../Footer'
 import PathItemInput from './PathItemInput'
@@ -102,7 +102,7 @@ useEffect(()=> {
   window.storyBuilderUI(); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[]);
 
-useEffect(()=> {
+useLayoutEffect(()=> {
   setCurrentStateUnsaved(true); //for the tab changing (preview, tree view etc.) in materialize UI stuff
 },[PATHS]);
 

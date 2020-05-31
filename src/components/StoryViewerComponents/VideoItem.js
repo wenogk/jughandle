@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
+import ReactPlayer from 'react-player'
 const VideoItem = ({ PATH}) => {
   return(
-    <h1>{PATH.video}</h1>
+    <ReactPlayer playing={true} url={PATH.video} width='100%' height='100%' />
   );
 }
 export default VideoItem;
